@@ -63,10 +63,8 @@
 <body class="bg-[#0a0a0a] text-white font-barlow overflow-x-hidden">
 
   <nav class="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 md:px-10 h-16 bg-[#0a0a0a]/85 backdrop-blur-md border-b border-white/5">
-    <div class="flex items-center gap-[0.55rem] font-barlowCond font-bold text-[1.05rem] tracking-[0.12em] uppercase cursor-default">
-      <div class="w-[34px] h-[34px] border-2 border-white rounded-full flex items-center justify-center text-base font-bebas">🎧</div>
-      CLⒶSSIX
-    </div>
+   
+    <img src="images/DJCE1.png" class="h-10 w-auto object-contain" alt="Logo"/>
 
     <ul class="hidden md:flex gap-10 list-none">
       <li><a href="#" class="font-barlowCond font-semibold text-[0.85rem] tracking-[0.14em] uppercase text-white transition-colors hover:text-gold">Home</a></li>
@@ -75,23 +73,35 @@
       <li><a href="#" class="font-barlowCond font-semibold text-[0.85rem] tracking-[0.14em] uppercase text-white transition-colors hover:text-gold">Events</a></li>
     </ul>
 
-    <a href="#" class="font-barlowCond font-bold text-[0.78rem] tracking-[0.15em] uppercase text-white border-[1.5px] border-white px-5 py-2 transition-all hover:bg-white hover:text-black">Book Event</a>
-  </nav>
+    <a href="https://forms.gle/MUz8LujK4bz9DShY9" class="font-barlowCond font-bold text-[0.78rem] tracking-[0.15em] uppercase text-white border-[1.5px] border-white px-5 py-2 transition-all hover:bg-white hover:text-black">Book Event</a>
+</nav>
+<section class="relative h-screen min-h-[700px] flex items-center justify-center text-center overflow-hidden">
+    <img src="images/cover.jpeg" class="absolute inset-0 w-full h-full object-cover z-0" alt="Background Cover" />
 
-  <section class="relative h-screen min-h-[600px] flex items-center justify-center text-center overflow-hidden">
-    <video class="absolute inset-0 w-full h-full object-cover z-0" src="https://cdn.pixabay.com/video/2016/06/29/3869-173265648_large.mp4" autoplay muted loop playsinline></video>
     <div class="absolute inset-0 bg-hero-gradient z-[1]"></div>
     <div class="absolute inset-0 bg-hero-radial z-[2]"></div>
     <div class="absolute inset-0 bg-dots-pattern bg-[length:38px_38px] z-[2] pointer-events-none"></div>
 
-    <div class="relative z-[3] px-4">
-      <h1 class="animate-fadeUp delay-100 font-bebas text-[clamp(3.5rem,10vw,8.5rem)] tracking-[0.04em] leading-[0.92] uppercase [text-shadow:0_0_60px_rgba(200,160,255,0.25)]">DJ CLⒶSSIX</h1>
-      <p class="animate-fadeUp delay-350 font-barlowCond text-[clamp(1rem,2.5vw,1.35rem)] tracking-[0.45em] uppercase text-[#e8e8e8] mt-[1.2rem]">Live in Concert</p>
-      <p class="animate-fadeUp delay-450 font-barlowCond text-[clamp(0.75rem,1.5vw,0.95rem)] tracking-[0.25em] uppercase text-[#bbb] mt-[0.35rem]">Sunday, November 16 2025 &nbsp;|&nbsp; 4.00PM</p>
-      <p class="animate-fadeUp delay-550 font-bebas text-[clamp(2.2rem,6vw,5rem)] tracking-[0.1em] mt-[1.2rem]">UNASHAMED</p>
-      <a href="#" class="animate-fadeUp delay-750 inline-block mt-[2.2rem] px-[2.8rem] py-4 bg-black border-2 border-white text-white font-barlowCond font-bold text-[0.9rem] tracking-[0.2em] uppercase transition-all hover:bg-white hover:text-black">Get Tickets</a>
+    <div class="relative z-[3] px-6 flex flex-col items-center w-full">
+      <img src="images/on balck.png" class="w-[60%] md:w-[25%] max-w-[400px] h-auto" alt="Logo"/>
+      
+      <p class="animate-fadeUp delay-350 font-barlowCond text-[clamp(1.1rem,3vw,1.5rem)] tracking-[0.3em] md:tracking-[0.45em] uppercase text-[#e8e8e8] mt-6">
+        Live in Concert
+      </p>
+
+      <p class="animate-fadeUp delay-450 font-barlowCond text-[clamp(1.05rem,2.2vw,1.3rem)] tracking-[0.15em] md:tracking-[0.25em] uppercase text-[#bbb] mt-2 px-2">
+        Friday, March 27 2025 <span class="mx-1 md:mx-2">|</span> 5.00PM Surulere
+      </p>
+
+      <p class="animate-fadeUp delay-550 font-bebas text-[clamp(2.5rem,8vw,5.5rem)] leading-tight tracking-[0.05em] mt-4">
+        DJ Classix Rooftop
+      </p>
+      
+      <a href="https://selar.com/djclassixrooftopallblackparty" class="animate-fadeUp delay-750 inline-block mt-10 px-8 md:px-12 py-4 bg-black border-2 border-white text-white font-barlowCond font-bold text-[0.9rem] tracking-[0.2em] uppercase transition-all hover:bg-white hover:text-black">
+        Get Tickets
+      </a>
     </div>
-  </section>
+</section>
 <!-- 
   <section class="bg-[#0a0a0a] p-10 flex flex-col md:flex-row items-center gap-10 border-y border-white/10">
     <div class="w-40 h-40 rounded bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] flex shrink-0 items-center justify-center text-[3rem]">🎵</div>
@@ -105,53 +115,76 @@
     </a>
   </section> -->
 
-  <section id="about" class="relative bg-[#0d0d0d] pt-16 min-h-[600px] flex items-center overflow-hidden">
+  <div class="relative w-full overflow-hidden bg-[#0d0d0d]">
   
   <img 
     class="absolute inset-0 w-full h-full object-cover object-top z-0" 
-    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=85&fit=crop&crop=top" 
-    alt="DJ CLⒶSSIX Background"
+    src="images/About.jpeg" 
+    alt="DJ CLASSIX Background"
   >
 
-  <div class="absolute inset-0 z-[1] bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent md:from-[#0a0a0a] md:via-[#0a0a0a]/60"></div>
-  <div class="absolute inset-0 z-[1] bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
+  <div class="absolute inset-0 z-[1] bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent md:via-[#0a0a0a]/60"></div>
+  <div class="absolute inset-0 z-[1] bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent"></div>
 
-  <div class="relative z-10 max-w-[1200px] mx-auto w-full px-6 md:px-10 py-20">
-    <div class="max-w-[560px]">
-      <h1 class="animate-fadeLeft delay-100 font-montserrat font-extrabold text-[clamp(2.6rem,5.5vw,4.4rem)] leading-none tracking-tight mb-4 text-white">
-        Meet DJ<br>CLⒶSSIX
-      </h1>
-      <p class="animate-fadeLeft delay-300 font-barlow italic font-normal text-[clamp(1rem,1.8vw,1.2rem)] text-[#ddd] leading-relaxed mb-7">
-        Your Go-To DJ for Unforgettable Weddings,<br>Parties & Events
-      </p>
+  <div class="relative z-10 max-w-[1200px] mx-auto w-full px-6 md:px-10">
+    
+<section id="about" class="pt-24 pb-12 flex items-center min-h-[500px]">
+  <div class="max-w-[560px] w-full">
+    <h1 class="animate-fadeLeft delay-100 font-montserrat font-extrabold text-[clamp(2.6rem,5.5vw,4.4rem)] leading-[1.1] tracking-tight mb-4 text-white">
+      Meet DJ <br class="hidden md:block">CLASSIX
+    </h1>
+    
+    <p class="animate-fadeLeft delay-300 font-barlow italic font-normal text-[clamp(1.05rem,1.8vw,1.2rem)] text-[#ddd] leading-relaxed mb-7">
+      Your Go-To DJ for Unforgettable Weddings, <br class="hidden md:block">Parties & Events
+    </p>
+    
+    <div class="animate-fadeLeft delay-500 flex flex-wrap items-center gap-x-4 gap-y-3 font-barlowCond font-bold text-[clamp(1.1rem,1.5vw,1.3rem)] tracking-wide text-white">
       
-      <div class="animate-fadeLeft delay-500 flex items-center gap-0 flex-wrap font-barlowCond font-bold text-[clamp(0.92rem,1.5vw,1.08rem)] tracking-wide text-white">
-        <span class="whitespace-nowrap">29,805+ Monthly Listeners</span>
-        <span class="mx-4 text-[#666] font-light">|</span>
-        <span class="whitespace-nowrap">10+ Awards</span>
-        <span class="mx-4 text-[#666] font-light">|</span>
-        <span class="whitespace-nowrap">2,000+ Events</span>
-      </div>
-      <div class="w-[60px] h-[2px] bg-white/25 mt-7"></div>
+      <span class="whitespace-nowrap">60+ Events</span>
+      <span class="text-[#666] font-light">|</span>
+      
+      <span class="whitespace-nowrap">31+ Weddings</span>
+      <span class="text-[#666] font-light">|</span>
+      
+      <span class="whitespace-nowrap">15+ Shows</span>
+      <span class="text-[#666] font-light hidden sm:inline">|</span>
+      
+      <span class="whitespace-nowrap">5+ Birthdays</span>
+      <span class="text-[#666] font-light">|</span>
+      
+      <span class="whitespace-nowrap">4+ Corporate</span>
+      <span class="text-[#666] font-light hidden sm:inline">|</span>
+      
+      <span class="whitespace-nowrap">2+ Awards</span>
+      <span class="text-[#666] font-light">|</span>
+      
+      <span class="whitespace-nowrap">5+ Mixtapes</span>
     </div>
+
+    <div class="w-[60px] h-[2px] bg-white/25 mt-7"></div>
   </div>
 </section>
 
-<section class="bg-[#0a0a0a] px-6 md:px-10 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 max-w-[1200px] mx-auto">
-  <p class="font-barlow text-[clamp(0.9rem,1.2vw,1.02rem)] leading-[1.72] text-[#ccc]">
-    <strong class="text-white font-bold">DJ CLⒶSSIX</strong> is more than a DJ, he's an experience. Known as "Big Ray," he has become the heartbeat of unforgettable weddings, parties, and events across Nigeria and beyond. With his exceptional ability to blend Afro-Gospel rhythms with crowd-moving party vibes, he creates an atmosphere of pure energy, joy, and celebration.
-  </p>
-<p class="font-barlow text-[clamp(0.9rem,1.2vw,1.02rem)] leading-[1.72] text-[#ccc]">
-  <strong class="text-white font-bold">Lorem ipsum dolor sit amet</strong> 
-  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
-  nulla pariatur.
-</p>
-</section>
-  <div class="max-w-[1200px] mx-auto px-6 md:px-10 pb-20">
-    <a href="https://forms.gle/MUz8LujK4bz9DShY9" class="inline-block px-10 py-4 border-2 border-white font-barlowCond font-bold text-[0.85rem] tracking-[0.22em] uppercase transition-all hover:bg-white hover:text-black">Book Your Next Event With Me</a>
+    <div class="pb-24 grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div class="animate-fadeLeft delay-700">
+        <p class="font-barlow text-[clamp(0.95rem,1.2vw,1.05rem)] leading-[1.8] text-[#ccc]">
+          <strong class="text-white font-bold">DJ CLASSIX</strong> is more than a DJ, he's an experience. For more than half a decade, DJ Classix has been elevating both social and corporate events; weddings, birthday parties, concerts, get-togethers, corporate galas, conferences, and brand launches within and across Nigeria. 
+          <br><br>
+          He is also the official DJ for Energize Music, a top label supporting creatives and artists within and beyond the Christian space. One of his breakout projects, DJ Classix Rooftop, champions Afro-gospel music and its culture.
+        </p>
+        
+        <div class="mt-12">
+          <a href="https://forms.gle/MUz8LujK4bz9DShY9" class="inline-block px-10 py-4 border-2 border-white font-barlowCond font-bold text-[0.85rem] tracking-[0.22em] uppercase transition-all hover:bg-white hover:text-black text-white">
+            Book Your Next Event With Me
+          </a>
+        </div>
+      </div>
+      
+      <div class="hidden md:block"></div>
+    </div>
+
   </div>
+</div>
 <footer class="bg-[#0a0a0a] font-barlow">
 
   <div class="border-t border-white/10"></div>
@@ -161,10 +194,7 @@
     <div class="flex flex-col gap-7">
 
       <div class="flex items-center gap-[0.6rem]">
-        <div class="w-9 h-9 border-2 border-white rounded-full flex items-center justify-center font-bebas text-base text-white">🎧</div>
-        <span class="font-barlowCond font-bold text-[1.1rem] tracking-[0.16em] uppercase text-white">
-          CLASSIX
-        </span>
+        <img src="images/DJCE1.png" class="h-10 w-auto object-contain" alt="Logo"/>
       </div>
 
       <div class="flex gap-3">
@@ -235,7 +265,6 @@
       Copyright &copy; 2026 – DJ Classix
     </p>
   </div>
-
-</footer>
+ </footer>
 </body>
 </html>
