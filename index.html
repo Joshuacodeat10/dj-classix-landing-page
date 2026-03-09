@@ -3,52 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DJ Hørphuray</title>
+  <title>DJ Classix</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
 
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            gold: '#c9a84c',
-            spotifyGreen: '#22c55e',
-          },
-          fontFamily: {
-            bebas: ['"Bebas Neue"', 'cursive'],
-            barlowCond: ['"Barlow Condensed"', 'sans-serif'],
-            barlow: ['Barlow', 'sans-serif'],
-            montserrat: ['Montserrat', 'sans-serif'],
-          },
-          backgroundImage: {
-            'hero-gradient': 'linear-gradient(to bottom, rgba(20,10,40,0.72) 0%, rgba(40,15,70,0.60) 50%, rgba(10,10,20,0.85) 100%)',
-            'hero-radial': 'radial-gradient(ellipse at 20% 50%, rgba(80,30,120,0.45) 0%, transparent 60%), radial-gradient(ellipse at 80% 40%, rgba(20,100,80,0.30) 0%, transparent 55%)',
-            'dots-pattern': 'radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)',
-            'about-overlay': 'linear-gradient(to right, #0d0d0d 35%, rgba(13,13,13,0.78) 55%, rgba(13,13,13,0.12) 100%), linear-gradient(to bottom, rgba(13,13,13,0) 70%, #0d0d0d 100%)',
-          },
-          animation: {
-            fadeUp: 'fadeUp 0.9s ease both',
-            fadeLeft: 'fadeLeft 0.8s ease both',
-          },
-          keyframes: {
-            fadeUp: {
-              'from': { opacity: '0', transform: 'translateY(30px)' },
-              'to': { opacity: '1', transform: 'translateY(0)' },
-            },
-            fadeLeft: {
-              'from': { opacity: '0', transform: 'translateX(-24px)' },
-              'to': { opacity: '1', transform: 'translateX(0)' },
-            }
-          }
+ tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        gold: '#c9a84c',
+        spotifyGreen: '#22c55e',
+      },
+      fontFamily: {
+        dm: ['"DM Sans"', 'sans-serif'],
+      },
+      backgroundImage: {
+        // CHANGED: Purplish gradients are now neutral gray/black
+        'hero-gradient': 'linear-gradient(to bottom, rgba(15,15,15,0.75) 0%, rgba(20,20,20,0.65) 50%, rgba(10,10,10,0.90) 100%)',
+        'hero-radial': 'radial-gradient(ellipse at 20% 50%, rgba(30,30,30,0.50) 0%, transparent 60%), radial-gradient(ellipse at 80% 40%, rgba(40,40,40,0.40) 0%, transparent 55%)',
+        // Dots pattern preserved
+        'dots-pattern': 'radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)',
+        'about-overlay': 'linear-gradient(to right, #0d0d0d 35%, rgba(13,13,13,0.78) 55%, rgba(13,13,13,0.12) 100%), linear-gradient(to bottom, rgba(13,13,13,0) 70%, #0d0d0d 100%)',
+      },
+      // ...Animations and keyframes remain the same...
+      animation: {
+        fadeUp: 'fadeUp 0.9s ease both',
+        fadeLeft: 'fadeLeft 0.8s ease both',
+      },
+      keyframes: {
+        fadeUp: {
+          'from': { opacity: '0', transform: 'translateY(30px)' },
+          'to': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeLeft: {
+          'from': { opacity: '0', transform: 'translateX(-24px)' },
+          'to': { opacity: '1', transform: 'translateX(0)' },
         }
       }
     }
+  }
+}
   </script>
 
   <style type="text/tailwindcss">
+    @layer base {
+      html { font-family: "DM Sans", sans-serif; }
+    }
     @layer utilities {
       .delay-100 { animation-delay: 0.1s; }
       .delay-300 { animation-delay: 0.3s; }
@@ -60,11 +63,10 @@
     }
   </style>
 </head>
-<body class="bg-[#0a0a0a] text-white font-barlow overflow-x-hidden">
+<body class="bg-[#0a0a0a] text-white font-dm overflow-x-hidden">
 
   <nav class="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 md:px-10 h-16 bg-[#0a0a0a]/85 backdrop-blur-md border-b border-white/5">
-    
-    <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 relative z-[110] transition-opacity hover:opacity-80" aria-label="Open Menu">
+    <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 relative z-[110]" aria-label="Open Menu">
       <span class="w-6 h-[2px] bg-white mb-1.5 transition-all duration-300"></span>
       <span class="w-6 h-[2px] bg-white mb-1.5 transition-all duration-300"></span>
       <span class="w-6 h-[2px] bg-white transition-all duration-300"></span>
@@ -73,15 +75,14 @@
     <img src="images/DJCE1.png" class="h-8 md:h-10 w-auto object-contain" alt="Logo"/>
 
     <ul class="hidden md:flex gap-10 list-none">
-      <li><a href="#" class="font-barlowCond font-semibold text-[0.85rem] tracking-[0.14em] uppercase text-white hover:text-white/70 transition-colors">Home</a></li>
-      <li><a href="#about" class="font-barlowCond font-semibold text-[0.85rem] tracking-[0.14em] uppercase text-white hover:text-white/70 transition-colors">About</a></li>
+      <li><a href="#" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Home</a></li>
+      <li><a href="#about" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">About</a></li>
     </ul>
 
-    <a href="https://forms.gle/MUz8LujK4bz9DShY9" class="hidden sm:block font-barlowCond font-bold text-[0.78rem] tracking-[0.15em] uppercase text-white border-[1.5px] border-white px-5 py-2 hover:bg-white hover:text-black transition-all">Book Event</a>
-</nav>
+    <a href="https://forms.gle/MUz8LujK4bz9DShY9" class="hidden sm:block font-bold text-[0.75rem] tracking-[0.15em] uppercase text-white border-[1.5px] border-white px-5 py-2 hover:bg-white hover:text-black transition-all">Book Event</a>
+  </nav>
 
-<div id="sidebar" class="fixed inset-y-0 left-0 w-[280px] bg-[#0a0a0a] z-[105] flex flex-col p-10 transition-transform duration-500 ease-in-out -translate-x-full border-r border-white/10 shadow-2xl">
-    
+  <div id="sidebar" class="fixed inset-y-0 left-0 w-[280px] bg-[#0a0a0a] z-[105] flex flex-col p-10 transition-transform duration-500 ease-in-out -translate-x-full border-r border-white/10 shadow-2xl">
     <button id="close-btn" class="self-end text-white p-2 mb-10 hover:rotate-90 transition-transform duration-300">
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -90,232 +91,150 @@
     </button>
 
     <div class="flex flex-col gap-8">
-      <a href="#" class="mobile-link font-barlowCond font-bold text-3xl tracking-widest uppercase text-white hover:translate-x-2 transition-transform">Home</a>
-      <a href="#about" class="mobile-link font-barlowCond font-bold text-3xl tracking-widest uppercase text-white hover:translate-x-2 transition-transform">About</a>
-      
+      <a href="#" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Home</a>
+      <a href="#about" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">About</a>
       <div class="h-[1px] w-12 bg-white/20 my-2"></div>
-
-      <a href="https://forms.gle/MUz8LujK4bz9DShY9" class="mobile-link font-barlowCond font-bold text-sm tracking-[0.2em] uppercase text-black bg-white px-6 py-4 text-center">
-        Book Event
-      </a>
+      <a href="https://forms.gle/MUz8LujK4bz9DShY9" class="mobile-link font-bold text-sm tracking-[0.2em] uppercase text-black bg-white px-6 py-4 text-center">Book Event</a>
     </div>
-</div>
+  </div>
 
-<div id="overlay-bg" class="fixed inset-0 bg-black/60 z-[102] hidden backdrop-blur-sm"></div>
-
-<script>
-  const menuBtn = document.getElementById('menu-btn');
-  const closeBtn = document.getElementById('close-btn');
-  const sidebar = document.getElementById('sidebar');
-  const overlayBg = document.getElementById('overlay-bg');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-
-  function openMenu() {
-    sidebar.classList.remove('-translate-x-full');
-    overlayBg.classList.remove('hidden');
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeMenu() {
-    sidebar.classList.add('-translate-x-full');
-    overlayBg.classList.add('hidden');
-    document.body.style.overflow = "auto";
-  }
-
-  menuBtn.addEventListener('click', openMenu);
-  closeBtn.addEventListener('click', closeMenu);
-  overlayBg.addEventListener('click', closeMenu);
-
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-</script>
+  <div id="overlay-bg" class="fixed inset-0 bg-black/60 z-[102] hidden backdrop-blur-sm"></div>
 <section class="relative h-screen min-h-[700px] flex items-center justify-center text-center overflow-hidden">
-    <img src="images/cover.jpeg" class="absolute inset-0 w-full h-full object-cover z-0" alt="Background Cover" />
-
-    <div class="absolute inset-0 bg-hero-gradient z-[1]"></div>
-    <div class="absolute inset-0 bg-hero-radial z-[2]"></div>
-    <div class="absolute inset-0 bg-dots-pattern bg-[length:38px_38px] z-[2] pointer-events-none"></div>
-
-    <div class="relative z-[3] px-6 flex flex-col items-center w-full">
-      <img src="images/on balck.png" class="w-[60%] md:w-[25%] max-w-[400px] h-auto" alt="Logo"/>
-      
-      <p class="animate-fadeUp delay-350 font-barlowCond text-[clamp(1.1rem,3vw,1.5rem)] tracking-[0.3em] md:tracking-[0.45em] uppercase text-[#e8e8e8] mt-6">
-        Live in Concert
-      </p>
-
-      <p class="animate-fadeUp delay-450 font-barlowCond text-[clamp(1.05rem,2.2vw,1.3rem)] tracking-[0.15em] md:tracking-[0.25em] uppercase text-[#bbb] mt-2 px-2">
-        Friday, March 27 2025 <span class="mx-1 md:mx-2">|</span> 5.00PM Surulere
-      </p>
-
-      <p class="animate-fadeUp delay-550 font-bebas text-[clamp(2.5rem,8vw,5.5rem)] leading-tight tracking-[0.05em] mt-4">
-        DJ Classix Rooftop
-      </p>
-      
-      <a href="https://selar.com/djclassixrooftopallblackparty" class="animate-fadeUp delay-750 inline-block mt-10 px-8 md:px-12 py-4 bg-black border-2 border-white text-white font-barlowCond font-bold text-[0.9rem] tracking-[0.2em] uppercase transition-all hover:bg-white hover:text-black">
-        Get Tickets
-      </a>
-    </div>
-</section>
-<!-- 
-  <section class="bg-[#0a0a0a] p-10 flex flex-col md:flex-row items-center gap-10 border-y border-white/10">
-    <div class="w-40 h-40 rounded bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] flex shrink-0 items-center justify-center text-[3rem]">🎵</div>
-    <div class="text-center md:text-left">
-      <h2 class="font-barlow font-bold text-[2rem]">Latest Release</h2>
-      <p class="font-barlowCond font-semibold text-base tracking-[0.12em] uppercase text-[#aaa] underline underline-offset-4">Certified Son of God</p>
-    </div>
-    <a href="#" class="inline-flex items-center gap-3 bg-spotifyGreen text-black font-barlowCond font-bold text-[0.85rem] tracking-[0.12em] uppercase px-6 py-3 rounded-sm ml-0 md:ml-auto transition-opacity hover:opacity-85">
-      <span class="w-5 h-5 bg-black rounded-full flex items-center justify-center text-[0.7rem] text-white">♪</span>
-      Listen on Spotify
-    </a>
-  </section> -->
-
-  <div class="relative w-full overflow-hidden bg-[#0d0d0d]">
+  <img src="images/cover.jpeg" class="absolute inset-0 w-full h-full object-cover z-0" alt="Background Cover" />
   
-  <img 
-    class="absolute inset-0 w-full h-full object-cover object-top z-0" 
-    src="images/About.jpeg" 
-    alt="DJ CLASSIX Background"
-  >
+  <div class="absolute inset-0 bg-hero-gradient z-[1]"></div>
+  <div class="absolute inset-0 bg-hero-radial z-[2]"></div>
+  <div class="absolute inset-0 bg-dots-pattern bg-[length:38px_38px] z-[2] pointer-events-none"></div>
 
-  <div class="absolute inset-0 z-[1] bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent md:via-[#0a0a0a]/60"></div>
-  <div class="absolute inset-0 z-[1] bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent"></div>
-
-  <div class="relative z-10 max-w-[1200px] mx-auto w-full px-6 md:px-10">
+  <div class="relative z-[3] px-6 flex flex-col items-center w-full">
+    <img src="images/on balck.png" class="w-[65%] md:w-[30%] max-w-[550px] h-auto" alt="Logo"/>
     
-<section id="about" class="pt-24 pb-12 flex items-center min-h-[500px]">
-  <div class="max-w-[560px] w-full">
-    <h1 class="animate-fadeLeft delay-100 font-montserrat font-extrabold text-[clamp(2.6rem,5.5vw,4.4rem)] leading-[1.1] tracking-tight mb-4 text-white">
-      Meet DJ <br class="hidden md:block">CLASSIX
-    </h1>
-    
-    <p class="animate-fadeLeft delay-300 font-barlow italic font-normal text-[clamp(1.05rem,1.8vw,1.2rem)] text-[#ddd] leading-relaxed mb-7">
-      Your Go-To DJ for Unforgettable Weddings, <br class="hidden md:block">Parties & Events
+    <p class="animate-fadeUp delay-450 font-dm font-normal text-[clamp(1.1rem,2.2vw,1.3rem)] tracking-[0.15em] text-[#bbb] mt-2">
+      Friday, March 27 2025 <span class="mx-2 opacity-30">|</span> 5.00PM Surulere
     </p>
-    
-    <div class="animate-fadeLeft delay-500 flex flex-wrap items-center gap-x-4 gap-y-3 font-barlowCond font-bold text-[clamp(1.1rem,1.5vw,1.3rem)] tracking-wide text-white">
-      
-      <span class="whitespace-nowrap">60+ Events</span>
-      <span class="text-[#666] font-light">|</span>
-      
-      <span class="whitespace-nowrap">31+ Weddings</span>
-      <span class="text-[#666] font-light">|</span>
-      
-      <span class="whitespace-nowrap">15+ Shows</span>
-      <span class="text-[#666] font-light hidden sm:inline">|</span>
-      
-      <span class="whitespace-nowrap">5+ Birthdays</span>
-      <span class="text-[#666] font-light">|</span>
-      
-      <span class="whitespace-nowrap">4+ Corporate</span>
-      <span class="text-[#666] font-light hidden sm:inline">|</span>
-      
-      <span class="whitespace-nowrap">2+ Awards</span>
-      <span class="text-[#666] font-light">|</span>
-      
-      <span class="whitespace-nowrap">5+ Mixtapes</span>
-    </div>
 
-    <div class="w-[60px] h-[2px] bg-white/25 mt-7"></div>
+    <a href="https://selar.com/djclassixrooftopallblackparty" class="animate-fadeUp delay-750 inline-block mt-10 px-12 py-4 bg-transparent border-2 border-white text-white font-dm font-bold text-[0.85rem] tracking-[0.2em] uppercase transition-all hover:bg-white hover:text-black">
+      Get Tickets
+    </a>
   </div>
 </section>
 
-    <div class="pb-24 grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div class="animate-fadeLeft delay-700">
-        <p class="font-barlow text-[clamp(0.95rem,1.2vw,1.05rem)] leading-[1.8] text-[#ccc]">
-          <strong class="text-white font-bold">DJ CLASSIX</strong> is more than a DJ, he's an experience. For more than half a decade, DJ Classix has been elevating both social and corporate events; weddings, birthday parties, concerts, get-togethers, corporate galas, conferences, and brand launches within and across Nigeria. 
-          <br><br>
-          He is also the official DJ for Energize Music, a top label supporting creatives and artists within and beyond the Christian space. One of his breakout projects, DJ Classix Rooftop, champions Afro-gospel music and its culture.
-        </p>
+  <div class="relative w-full overflow-hidden bg-[#0d0d0d]">
+    <img class="absolute inset-0 w-full h-full object-cover object-top z-0 opacity-40 md:opacity-100" src="images/About.jpeg" alt="Background">
+    <div class="absolute inset-0 z-[1] bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/90 to-transparent"></div>
+
+  <div class="relative z-10 max-w-[1200px] mx-auto w-full px-6 md:px-10">
+  
+  <section id="about" class="pt-24 pb-8 flex items-center">
+    <div class="max-w-[800px] w-full">
+      <h2 class="animate-fadeLeft delay-100 font-extrabold text-[clamp(2.6rem,5.5vw,4.4rem)] leading-[1.05] tracking-tighter text-white uppercase">
+        Meet DJ <br class="hidden md:block"> CLASSIX
+      </h2>
+    </div>
+  </section>
+
+  <div class="pb-24 grid grid-cols-1 md:grid-cols-12 gap-12">
+    
+    <div class="md:col-span-8 animate-fadeLeft delay-700">
+      
+      <p class="text-[clamp(1rem,1.2vw,1.15rem)] leading-[1.8] text-[#999] mb-10">
+        <strong class="text-white font-bold uppercase tracking-widest">DJ CLASSIX</strong> is more than a DJ, he's an experience. For more than half a decade, <b class="text-white">DJ Classix</b> has been elevating both social and corporate events; weddings, birthday parties, concerts, get-togethers, corporate galas, conferences, and brand launches within and across Nigeria. 
+        <br><br>
+        He is also the <b class="text-white">Official DJ</b> for Energize Music, a top label supporting creatives and artists within and beyond the Christian space. One of his breakout projects, <b class="text-white">DJ Classix Rooftop</b>, champions Afro-gospel music and its culture, uniting people to celebrate and connect. 
+        <br><br>
+        When DJ Classix is on the wheels, it’s a <b class="text-white">Classix Experience</b>, where the energy, atmosphere, and connection light up the room every single time.
+      </p>
+
+      <div class="animate-fadeLeft delay-500 flex flex-wrap items-center gap-x-6 gap-y-4 font-bold text-[clamp(1rem,1.8vw,1.2rem)] tracking-tight text-white/90 border-t border-white/10 pt-8">
+        <span class="whitespace-nowrap">500+ Events</span> 
+        <span class="opacity-20 hidden sm:inline">/</span>
         
-        <div class="mt-12">
-          <a href="https://forms.gle/MUz8LujK4bz9DShY9" class="inline-block px-10 py-4 border-2 border-white font-barlowCond font-bold text-[0.85rem] tracking-[0.22em] uppercase transition-all hover:bg-white hover:text-black text-white">
-            Book Your Next Event With Me
+        <span class="whitespace-nowrap">500k+ Online Interactions</span> 
+        <span class="opacity-20 hidden sm:inline">/</span>
+        
+        <span class="whitespace-nowrap">3 Award Nominations</span> 
+        <span class="opacity-20 hidden sm:inline">/</span>
+        
+        <span class="whitespace-nowrap">20+ Mixtapes</span>
+      </div>
+
+      <div class="mt-12">
+        <a href="https://forms.gle/MUz8LujK4bz9DShY9" class="inline-block px-10 py-4 border-2 border-white font-bold text-[0.8rem] tracking-[0.2em] uppercase transition-all hover:bg-white hover:text-black">
+          Book Your Next Event
+        </a>
+      </div>
+    </div>
+
+    <div class="hidden md:block md:col-span-4"></div>
+
+  </div>
+</div>
+  </div>
+
+  <footer class="bg-[#0a0a0a] border-t border-white/10">
+    <div class="max-w-[1200px] mx-auto px-10 py-14 flex flex-col md:flex-row justify-between items-center gap-10">
+      <div class="flex flex-col gap-7 items-start">
+        <img src="images/DJCE1.png" class="h-10 w-auto object-contain" alt="Logo"/>
+        <div class="flex gap-4">
+          <a href="https://www.tiktok.com/@djclassix_" target="_blank" class="w-10 h-10 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#333] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16" height="16" fill="white"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72c0 84.76-68.71 153.47-153.47 153.47S18.29 434.14 18.29 349.38s68.71-153.47 153.47-153.47V256c-51.62 0-93.47 41.85-93.47 93.38s41.85 93.47 93.47 93.47 93.47-41.85 93.47-93.47V0h60c1.84 83.33 69.15 150.27 152.77 152.11v57.8z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/djclassix_" target="_blank" class="w-10 h-10 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#333] transition-colors">
+            <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@djclassix_" target="_blank" class="group w-10 h-10 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#333] transition-colors">
+            <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a1a1a" class="group-hover:fill-[#333] transition-colors"/></svg>
           </a>
         </div>
       </div>
-      
-      <div class="hidden md:block"></div>
-    </div>
 
-  </div>
-</div>
-<footer class="bg-[#0a0a0a] font-barlow">
-  <div class="border-t border-white/10"></div>
-
-  <div class="max-w-[1200px] mx-auto px-10 py-14 flex flex-col md:flex-row justify-between items-center gap-10">
-    
-    <div class="flex flex-col gap-7 items-start">
-      <div class="flex items-center gap-[0.6rem]">
-        <img src="images/DJCE1.png" class="h-10 w-auto object-contain" alt="Logo"/>
-      </div>
-
-      <div class="flex gap-4">
-        <!-- <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer" class="w-[42px] h-[42px] rounded-full bg-[#1a1a1a] flex items-center justify-center transition-colors cursor-pointer hover:bg-[#333] shrink-0">
-          <svg width="18" height="18" fill="white" viewBox="0 0 24 24">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-          </svg>
-        </a> -->
-
-        <a href="https://www.tiktok.com/@djclassix_" target="_blank" rel="noopener noreferrer" class="w-[42px] h-[42px] rounded-full bg-[#1a1a1a] flex items-center justify-center transition-colors cursor-pointer hover:bg-[#333] shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="17" height="17" fill="white">
-            <path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72c0 84.76-68.71 153.47-153.47 153.47S18.29 434.14 18.29 349.38s68.71-153.47 153.47-153.47V256c-51.62 0-93.47 41.85-93.47 93.38s41.85 93.47 93.47 93.47 93.47-41.85 93.47-93.47V0h60c1.84 83.33 69.15 150.27 152.77 152.11v57.8z"/>
-          </svg>
-        </a>
-
-        <a href="https://www.instagram.com/djclassix_" target="_blank" rel="noopener noreferrer" class="w-[42px] h-[42px] rounded-full bg-[#1a1a1a] flex items-center justify-center transition-colors cursor-pointer hover:bg-[#333] shrink-0">
-          <svg width="17" height="17" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/>
-          </svg>
-        </a>
-
-        <a href="https://www.youtube.com/@djclassix_" target="_blank" rel="noopener noreferrer" class="group w-[42px] h-[42px] rounded-full bg-[#1a1a1a] flex items-center justify-center transition-colors cursor-pointer hover:bg-[#333] shrink-0">
-          <svg width="18" height="18" fill="white" viewBox="0 0 24 24">
-            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
-            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a1a1a" class="group-hover:fill-[#333] transition-colors" />
-          </svg>
-        </a>
+      <div class="flex flex-col sm:flex-row gap-8">
+        <div class="flex items-center gap-4">
+          <div class="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center">
+            <svg width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <p class="font-bold text-[0.85rem] text-white uppercase tracking-wider">Email</p>
+            <p class="text-[0.9rem] text-[#666]">officialdjclassix@gmail.com</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center">
+            <svg width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div>
+            <p class="font-bold text-[0.85rem] text-white uppercase tracking-wider">Mobile</p>
+            <p class="text-[0.9rem] text-[#666]">+234 802 598 1080</p>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-[1.4rem] md:gap-8">
-      
-      <div class="flex items-center gap-4">
-        <div class="w-[46px] h-[46px] rounded-full border-[1.5px] border-[#444] flex items-center justify-center shrink-0">
-          <svg width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-  <polyline points="22,6 12,13 2,6"></polyline>
-</svg>
-        </div>
-        <div>
-          <p class="font-barlowCond font-bold text-[1rem] tracking-[0.06em] text-white">Email:</p>
-          <p class="text-[0.92rem] text-[#999] mt-[0.15rem]">officialdjclassix@gmail.com</p>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-4">
-        <div class="w-[46px] h-[46px] rounded-full border-[1.5px] border-[#444] flex items-center justify-center shrink-0">
-          <svg width="17" height="17" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-            <line x1="12" y1="18" x2="12.01" y2="18"/>
-          </svg>
-        </div>
-        <div>
-          <p class="font-barlowCond font-bold text-[1rem] tracking-[0.06em] text-white">Mobile:</p>
-          <p class="text-[0.92rem] text-[#999] mt-[0.15rem]">+234 802 598 1080</p>
-        </div>
-      </div>
-
+    <div class="border-t border-white/5 py-6 text-center">
+      <p class="text-[0.75rem] text-[#444] tracking-widest uppercase font-medium">Copyright &copy; 2026 – DJ Classix</p>
     </div>
-  </div>
+  </footer>
 
-  <div class="border-t border-white/5 py-[1.2rem] px-10 text-center">
-    <p class="text-[0.82rem] text-[#555] tracking-[0.04em]">
-      Copyright &copy; 2026 – DJ Classix
-    </p>
-  </div>
-</footer>
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+    const overlayBg = document.getElementById('overlay-bg');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openMenu() {
+      sidebar.classList.remove('-translate-x-full');
+      overlayBg.classList.remove('hidden');
+      document.body.style.overflow = "hidden";
+    }
+    function closeMenu() {
+      sidebar.classList.add('-translate-x-full');
+      overlayBg.classList.add('hidden');
+      document.body.style.overflow = "auto";
+    }
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlayBg.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+  </script>
 </body>
 </html>
