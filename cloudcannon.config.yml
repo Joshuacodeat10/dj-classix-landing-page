@@ -1,12 +1,51 @@
+# CloudCannon Configuration for DJ Classix Entertainment
+source: /
+output: _site
+
+# Define where your media is stored
 paths:
-  static: ''
-  uploads: uploads
-timezone: Africa/Lagos
-markdown:
-  engine: commonmark
-  options:
-    html: true
+  uploads: images
+  static: /
+
+# Identify your main editable pages
 collections_config:
   pages:
-    path: ''
-    icon: wysiwyg
+    path: /
+    output: true
+    filter:
+      - index.html
+    icon: description
+    description: Editable landing page for DJ Classix
+
+# Configure the visual editor and data inputs
+_inputs:
+  hero_date:
+    type: text
+    comment: "Format: FRIDAY, JUNE 26 2026"
+  hero_location:
+    type: text
+    comment: "Format: 5PM SURULERE"
+  event_ticket_link:
+    type: url
+  booking_link:
+    type: url
+  bio_text:
+    type: markdown
+  events_count:
+    type: text
+    label: "Number of Events (e.g., 500+ Events)"
+  online_interactions:
+    type: text
+    label: "Online Interactions (e.g., 500k+)"
+
+# Select which tools are available in the sidebar
+editor:
+  default_item_details:
+    enabled: true
+  preview:
+    enabled: true
+
+# Global site metadata (Useful for SEO and Footer)
+data_config:
+  site_settings:
+    path: data/settings.yml
