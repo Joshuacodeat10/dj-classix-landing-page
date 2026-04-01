@@ -4,6 +4,7 @@ paths:
   uploads: images
   static: /
 
+# 1. DEFINE THE EDITABLE COLLECTION
 collections_config:
   pages:
     path: ""             
@@ -14,16 +15,30 @@ collections_config:
       - visual
       - content
 
+# 2. DEFINE INPUTS (Sidebar & Data Binding)
 _inputs:
   hero_text:
     type: text
-    label: "Hero Event Text"
+    label: "Hero Event Details"
+    comment: "Updates the date/location line in the hero section"
+  
   booking_url:
     type: url
     label: "Global Booking Link"
+    comment: "Updates all 'Book Event' buttons across the site"
 
+# 3. VISUAL EDITOR OPTIONS
+# This ensures that when you click 'FRIDAY, JUNE 26...', it highlights in the editor
 editor:
   default_item_details:
     enabled: true
   preview:
     enabled: true
+
+# 4. OPTIONAL: SETUP STRUCTURES
+# If you want to make other parts of the page editable later
+_structures:
+  settings:
+    values:
+      - label: "Site Settings"
+        icon: settings
