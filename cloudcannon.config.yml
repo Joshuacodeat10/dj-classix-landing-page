@@ -12,10 +12,11 @@ collections_config:
   pages:
     path: /
     output: true
-    filter:
-      - index.html
-    icon: description
-    description: Editable landing page for DJ Classix
+    extension: html
+    # This line tells CloudCannon to use the Visual Editor by default
+    _enabled_editors: 
+      - visual
+      - content
 
 # Configure the visual editor and data inputs
 _inputs:
