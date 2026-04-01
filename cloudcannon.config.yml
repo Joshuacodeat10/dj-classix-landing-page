@@ -1,52 +1,45 @@
 # CloudCannon Configuration for DJ Classix Entertainment
-source: /
-output: _site
+# Optimized for a single-page HTML site
 
-# Define where your media is stored
+# 1. DEFINE YOUR DIRECTORIES
 paths:
   uploads: images
   static: /
 
-# Identify your main editable pages
+# 2. DEFINE YOUR EDITABLE PAGES
 collections_config:
   pages:
-    path: /
+    path: ""             # This tells CloudCannon to look in the root folder
     output: true
-    extension: html
-    # This line tells CloudCannon to use the Visual Editor by default
+    filter: 
+      - "index.html"     # Specifically targets your main file
     _enabled_editors: 
       - visual
       - content
 
-# Configure the visual editor and data inputs
+# 3. CONFIGURE THE SIDEBAR INPUTS
+# These names MUST match the words between the --- dashes in your index.html
 _inputs:
-  hero_date:
+  hero_text:
     type: text
-    comment: "Format: FRIDAY, JUNE 26 2026"
-  hero_location:
-    type: text
-    comment: "Format: 5PM SURULERE"
-  event_ticket_link:
+    label: "Event Date & Location"
+    comment: "Current: FRIDAY, JUNE 26 2026 | 5PM SURULERE"
+  
+  booking_url:
     type: url
-  booking_link:
-    type: url
-  bio_text:
-    type: markdown
-  events_count:
-    type: text
-    label: "Number of Events (e.g., 500+ Events)"
-  online_interactions:
-    type: text
-    label: "Online Interactions (e.g., 500k+)"
+    label: "Booking Form Link"
+  
+  hero_image:
+    type: image
+    label: "Hero Background Image"
 
-# Select which tools are available in the sidebar
+  about_image:
+    type: image
+    label: "About Section Image"
+
+# 4. EDITOR SETTINGS
 editor:
   default_item_details:
     enabled: true
   preview:
     enabled: true
-
-# Global site metadata (Useful for SEO and Footer)
-data_config:
-  site_settings:
-    path: data/settings.yml
