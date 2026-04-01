@@ -1,28 +1,27 @@
 # CloudCannon Configuration
 ssg_name: static
 source: ""
-output_dir: "." # Essential: Tells CloudCannon the root is the output
+output_dir: "." 
 
-# 1. Force the Editor to recognize index.html
 collections_config:
   pages:
     name: Pages
     path: ""
-    filter: "index.html"
+    # This ensures CloudCannon looks at your index.html specifically
+    filter: "index.html" 
     _enabled_editors:
       - visual
       - content
 
-# 2. Map your Front Matter to Sidebar Inputs
 _inputs:
   hero_text:
     type: text
     label: "Event Date & Location"
+    comment: "This updates the text appearing on the hero image."
   booking_url:
     type: url
     label: "Booking Form Link"
 
-# 3. Enable the Visual Preview
 editor:
   default_item_details:
     enabled: true
