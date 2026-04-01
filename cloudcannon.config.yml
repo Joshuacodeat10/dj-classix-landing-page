@@ -12,7 +12,7 @@ paths:
 collections_config:
   pages:
     name: Pages
-    path: ""             # Look in the root directory
+    path: /             # Look in the root directory
     output: true
     filter: 
       - "index.html"     # Target your specific file
