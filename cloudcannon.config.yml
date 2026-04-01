@@ -1,29 +1,29 @@
 # CloudCannon Configuration for DJ Classix Entertainment
-# Optimized for a single-page HTML site
+# Optimized for a single-page HTML site at the root
 
-# 1. DEFINE YOUR DIRECTORIES
+source: "" # Essential for root-level HTML files
 paths:
   uploads: images
   static: /
 
-# 2. DEFINE YOUR EDITABLE PAGES
+# 1. DEFINE YOUR EDITABLE PAGES
 collections_config:
   pages:
-    path: ""             # This tells CloudCannon to look in the root folder
+    path: ""             # Look in the root folder
     output: true
     filter: 
-      - "index.html"     # Specifically targets your main file
+      - "index.html"     # Targets your main file
     _enabled_editors: 
       - visual
       - content
 
-# 3. CONFIGURE THE SIDEBAR INPUTS
-# These names MUST match the words between the --- dashes in your index.html
+# 2. CONFIGURE THE SIDEBAR INPUTS
+# These match the keys in your index.html Front Matter
 _inputs:
   hero_text:
     type: text
     label: "Event Date & Location"
-    comment: "Current: FRIDAY, JUNE 26 2026 | 5PM SURULERE"
+    comment: "Format: FRIDAY, JUNE 26 2026 | 5PM SURULERE"
   
   booking_url:
     type: url
@@ -37,7 +37,7 @@ _inputs:
     type: image
     label: "About Section Image"
 
-# 4. EDITOR SETTINGS
+# 3. EDITOR SETTINGS
 editor:
   default_item_details:
     enabled: true
