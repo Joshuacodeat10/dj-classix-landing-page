@@ -1,50 +1,30 @@
-# CloudCannon Configuration for DJ Classix Entertainment
-# Forces CloudCannon to treat this as a simple Static HTML site
+# CloudCannon Configuration
 ssg_name: static
 source: ""
+output_dir: "." # Essential: Tells CloudCannon the root is the output
 
-# 1. DIRECTORIES
-paths:
-  uploads: images
-  static: /
-
-# 2. COLLECTIONS (This maps your index.html to the editor)
+# 1. Force the Editor to recognize index.html
 collections_config:
   pages:
     name: Pages
-    path: /             # Look in the root directory
-    output: true
-    filter: 
-      - "index.html"     # Target your specific file
-    _enabled_editors: 
+    path: ""
+    filter: "index.html"
+    _enabled_editors:
       - visual
       - content
 
-# 3. SIDEBAR INPUTS
-# These must match the keys in your index.html front matter
+# 2. Map your Front Matter to Sidebar Inputs
 _inputs:
   hero_text:
     type: text
     label: "Event Date & Location"
-    comment: "Updates the text under the logo"
-  
   booking_url:
     type: url
-    label: "Global Booking Link"
-    comment: "Updates all 'Book Event' buttons"
-  
-  hero_image:
-    type: image
-    label: "Hero Background Image"
+    label: "Booking Form Link"
 
-# 4. EDITOR INTERFACE
+# 3. Enable the Visual Preview
 editor:
   default_item_details:
     enabled: true
   preview:
     enabled: true
-
-# 5. BUILD SETTINGS (Ensures your site actually renders)
-build:
-  source: ""
-  output: "_site"
