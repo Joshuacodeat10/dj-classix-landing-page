@@ -66,39 +66,48 @@
 </head>
 <body class="bg-[#0a0a0a] text-white font-dm overflow-x-hidden">
 
-  <nav class="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 md:px-10 h-16 bg-[#0a0a0a]/85 backdrop-blur-md border-b border-white/5">
-    <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 relative z-[110]" aria-label="Open Menu">
-      <span class="w-6 h-[2px] bg-white mb-1.5 transition-all duration-300"></span>
-      <span class="w-6 h-[2px] bg-white mb-1.5 transition-all duration-300"></span>
-      <span class="w-6 h-[2px] bg-white transition-all duration-300"></span>
-    </button>
+<nav class="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 md:px-10 h-16 bg-[#0a0a0a]/85 backdrop-blur-md border-b border-white/5">
+  <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 relative z-[110]" aria-label="Open Menu">
+    <span class="w-6 h-[2px] bg-white mb-1.5 transition-all duration-300"></span>
+    <span class="w-6 h-[2px] bg-white mb-1.5 transition-all duration-300"></span>
+    <span class="w-6 h-[2px] bg-white transition-all duration-300"></span>
+  </button>
 
-    <img src="images/Home/DJCE1.png" class="h-8 md:h-10 w-auto object-contain" alt="Logo"/>
+  <img src="images/Home/DJCE1.png" class="h-8 md:h-10 w-auto object-contain" alt="Logo"/>
 
-    <ul class="hidden md:flex gap-10 list-none">
-      <li><a href="#" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Home</a></li>
-      <li><a href="#about" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">About</a></li>
-    </ul>
+  <ul class="hidden md:flex gap-5 list-none">
+    <li><a href="index.html" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Home</a></li>
+    <li><a href="about.html" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">About</a></li>
+    <li><a href="music.html" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Music</a></li>
+    <li><a href="events.html" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Events</a></li>
+    <li><a href="gallery.html" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Gallery</a></li>
+    <li><a href="shop.html" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Shop</a></li>
+  </ul>
 
-    <a href="https://forms.gle/MUz8LujK4bz9DShY9" class="hidden sm:block font-bold text-[0.75rem] tracking-[0.15em] uppercase text-white border-[1.5px] border-white px-5 py-2 hover:bg-white hover:text-black transition-all">Book Event</a>
-  </nav>
+  <a href="booking.html" class="hidden sm:block font-bold text-[0.75rem] tracking-[0.15em] uppercase text-white border-[1.5px] border-white px-5 py-2 hover:bg-white hover:text-black transition-all">Book Event</a>
+</nav>
 
-  <div id="sidebar" class="fixed inset-y-0 left-0 w-[280px] bg-[#0a0a0a] z-[105] flex flex-col p-10 transition-transform duration-500 ease-in-out -translate-x-full border-r border-white/10 shadow-2xl">
-    <button id="close-btn" class="self-end text-white p-2 mb-10 hover:rotate-90 transition-transform duration-300">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
+<div id="sidebar" class="fixed inset-y-0 left-0 w-[280px] bg-[#0a0a0a] z-[105] flex flex-col p-10 transition-transform duration-500 ease-in-out -translate-x-full border-r border-white/10 shadow-2xl">
+  <button id="close-btn" class="self-end text-white p-2 mb-10 hover:rotate-90 transition-transform duration-300">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
 
-    <div class="flex flex-col gap-8">
-      <a href="#" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Home</a>
-      <a href="#about" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">About</a>
-      <div class="h-[1px] w-12 bg-white/20 my-2"></div>
-      <a href="https://forms.gle/MUz8LujK4bz9DShY9" class="mobile-link font-bold text-sm tracking-[0.2em] uppercase text-black bg-white px-6 py-4 text-center">Book Event</a>
-    </div>
+  <div class="flex flex-col gap-6">
+    <a href="index.html" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Home</a>
+    <a href="about.html" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">About</a>
+    <a href="music.html" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Music</a>
+    <a href="events.html" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Events</a>
+    <a href="gallery.html" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Gallery</a>
+    <a href="shop.html" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Shop</a>
+    
+    <div class="h-[1px] w-12 bg-white/20 my-4"></div>
+    
+    <a href="booking.html" class="mobile-link font-bold text-sm tracking-[0.2em] uppercase text-black bg-white px-6 py-4 text-center">Book Event</a>
   </div>
-
+</div>
   <div id="overlay-bg" class="fixed inset-0 bg-black/60 z-[102] hidden backdrop-blur-sm"></div>
 <section class="relative h-screen min-h-[700px] flex items-center justify-center text-center overflow-hidden">
   <img src="images/Home/ABP004.JPG.jpeg" class="absolute inset-0 w-full h-full object-cover z-0" alt="Background Cover" />
@@ -173,7 +182,7 @@
   </div>
 </div>
   </div>
-
+  
   <footer class="bg-[#0a0a0a] border-t border-white/10">
     <div class="max-w-[1200px] mx-auto px-10 py-14 flex flex-col md:flex-row justify-between items-center gap-10">
       <div class="flex flex-col gap-7 items-start">

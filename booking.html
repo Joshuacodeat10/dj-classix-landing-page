@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DJ Classix Entertainment</title>
+  <link rel="icon" href="images/Home/favicon.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+
+  <script>
+ tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        gold: '#c9a84c',
+        spotifyGreen: '#22c55e',
+        surface: '#0e0e0e',
+            base: '#080808',
+            card: '#111111',
+            input: '#0a0a0a',
+            border: '#222222',
+            borderhover: '#3a3a3a',
+            label: '#555555',
+            muted: '#444444',
+            body: '#aaaaaa',
+            light: '#e0e0e0',
+      },
+       letterSpacing: {
+            widest2: '0.25em',
+            widest3: '0.3em',
+      },
+      fontFamily: {
+        dm: ['"DM Sans"', 'sans-serif'],
+      },
+      backgroundImage: {
+        // CHANGED: Purplish gradients are now neutral gray/black
+        'hero-gradient': 'linear-gradient(to bottom, rgba(15,15,15,0.75) 0%, rgba(20,20,20,0.65) 50%, rgba(10,10,10,0.90) 100%)',
+        'hero-radial': 'radial-gradient(ellipse at 20% 50%, rgba(30,30,30,0.50) 0%, transparent 60%), radial-gradient(ellipse at 80% 40%, rgba(40,40,40,0.40) 0%, transparent 55%)',
+        // Dots pattern preserved
+        'dots-pattern': 'radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)',
+        'about-overlay': 'linear-gradient(to right, #0d0d0d 35%, rgba(13,13,13,0.78) 55%, rgba(13,13,13,0.12) 100%), linear-gradient(to bottom, rgba(13,13,13,0) 70%, #0d0d0d 100%)',
+      },
+      // ...Animations and keyframes remain the same...
+      animation: {
+        fadeUp: 'fadeUp 0.9s ease both',
+        fadeLeft: 'fadeLeft 0.8s ease both',
+      },
+      keyframes: {
+        fadeUp: {
+          'from': { opacity: '0', transform: 'translateY(30px)' },
+          'to': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeLeft: {
+          'from': { opacity: '0', transform: 'translateX(-24px)' },
+          'to': { opacity: '1', transform: 'translateX(0)' },
+        }
+      }
+    }
+  }
+}
+  </script>
+
+  <style type="text/tailwindcss">
+    body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* The first gradient acts as the overlay, the second is the image */
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+              url('images/DJ-img1.jpeg');
+  
+  /* Centers the image perfectly */
+  background-position: center;
+  
+  /* Ensures the image covers the entire screen without stretching */
+  background-size: cover;
+  
+  /* Keeps the background fixed so it doesn't scroll with the content */
+  background-attachment: fixed;
+  
+  /* Prevents the image from repeating if the page is long */
+  background-repeat: no-repeat;
+}
+    @layer base {
+      html { font-family: "DM Sans", sans-serif; }
+    }
+    @layer utilities {
+      .delay-100 { animation-delay: 0.1s; }
+      .delay-300 { animation-delay: 0.3s; }
+      .delay-350 { animation-delay: 0.35s; }
+      .delay-450 { animation-delay: 0.45s; }
+      .delay-500 { animation-delay: 0.5s; }
+      .delay-550 { animation-delay: 0.55s; }
+      .delay-750 { animation-delay: 0.75s; }
+    }
+    .radio-dot {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px; height: 18px; min-width: 18px;
+      border: 1px solid #444;
+      border-radius: 9999px;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .radio-dot:checked { border-color: #fff; }
+    .radio-dot:checked::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 7px; height: 7px;
+      border-radius: 9999px;
+      background: #fff;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.4); cursor: pointer;
+    }
+    input[type="date"], input[type="time"] { color-scheme: dark; }
+    .other-reveal { display: none; }
+    .other-reveal.visible { display: block; }
+  </style>
+</head>
+<body class="bg-[#0a0a0a] text-white font-dm overflow-x-hidden">
+<nav class="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 md:px-10 h-16 bg-[#0a0a0a]/85 backdrop-blur-md border-b border-white/5">
+  <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 relative z-[110]" aria-label="Open Menu">
+    <span class="w-6 h-[2px] bg-white mb-1.5 transition-all duration-300"></span>
+    <span class="w-6 h-[2px] bg-white mb-1.5 transition-all duration-300"></span>
+    <span class="w-6 h-[2px] bg-white transition-all duration-300"></span>
+  </button>
+
+  <img src="images/Home/DJCE1.png" class="h-8 md:h-10 w-auto object-contain" alt="Logo"/>
+
+  <ul class="hidden md:flex gap-5 list-none">
+    <li><a href="index.html" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Home</a></li>
+    <li><a href="about.html" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">About</a></li>
+    <li><a href="music.html" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Music</a></li>
+    <li><a href="events.html" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Events</a></li>
+    <li><a href="gallery.html" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Gallery</a></li>
+    <li><a href="shop.html" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Shop</a></li>
+  </ul>
+
+  <a href="booking.html" class="hidden sm:block font-bold text-[0.75rem] tracking-[0.15em] uppercase text-white border-[1.5px] border-white px-5 py-2 hover:bg-white hover:text-black transition-all">Book Event</a>
+</nav>
+
+<div id="sidebar" class="fixed inset-y-0 left-0 w-[280px] bg-[#0a0a0a] z-[105] flex flex-col p-10 transition-transform duration-500 ease-in-out -translate-x-full border-r border-white/10 shadow-2xl">
+  <button id="close-btn" class="self-end text-white p-2 mb-10 hover:rotate-90 transition-transform duration-300">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+
+  <div class="flex flex-col gap-6">
+    <a href="index.html" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Home</a>
+    <a href="about.html" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">About</a>
+    <a href="music.html" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Music</a>
+    <a href="events.html" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Events</a>
+    <a href="gallery.html" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Gallery</a>
+    <a href="shop.html" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Shop</a>
+    
+    <div class="h-[1px] w-12 bg-white/20 my-4"></div>
+    
+    <a href="booking.html" class="mobile-link font-bold text-sm tracking-[0.2em] uppercase text-black bg-white px-6 py-4 text-center">Book Event</a>
+  </div>
+</div>
+<div class="pt-20 pb-20 px-4"> 
+
+    <div class="max-w-[640px] mx-auto bg-card border border-border rounded-2xl overflow-hidden">
+    
+        <div class="bg-black border-b border-border text-center px-10 py-10">
+          <p class="text-[14px] tracking-widest3 text-white uppercase font-medium mb-3">DJ Classix Entertainment Ltd.</p>
+          <h1 class="text-2xl font-light tracking-[0.12em] uppercase text-white">Book an Event</h1>
+          <p class="text-[13px] text-[muted] font-light tracking-wide mt-2">Fill in the details below and we'll be in touch</p>
+        </div>
+    
+        <div id="success-msg" class="hidden px-10 py-20 text-center">
+          <div class="w-14 h-14 rounded-full border border-[#2a2a2a] flex items-center justify-center mx-auto mb-8">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M4.5 11l4.8 4.8L17.5 7" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="text-[10px] tracking-widest3 text-white uppercase font-medium mb-4">Request Received</p>
+          <h2 class="text-xl font-light tracking-[0.1em] uppercase text-white mb-4">Thank You</h2>
+          <p class="text-[13px] text-muted font-light leading-loose max-w-xs mx-auto">
+            Your booking request has been sent to<br>
+            <span class="text-[#555]">djclassix@djclassixentertainment.com</span><br>
+            We'll be in touch with you shortly.
+          </p>
+        </div>
+    
+        <div id="error-msg" class="hidden px-10 py-4 bg-red-950 border-b border-red-900">
+          <p class="text-[12px] text-red-400 font-light tracking-wide text-center">
+            Something went wrong. Please try again or email us directly at djclassix@djclassixentertainment.com
+          </p>
+        </div>
+    
+        <form id="booking-form">
+          <div class="px-10 py-10">
+    
+            <div class="mb-8">
+              <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                Full Name <span class="text-red-600">*</span>
+              </label>
+              <input type="text" id="full_name" placeholder="Your full name" required
+                class="w-full bg-input border border-border rounded-lg px-[18px] py-3.5 text-sm font-light text-light placeholder-[#333] outline-none focus:border-[#555] transition-colors duration-200" />
+            </div>
+    
+            <div class="mb-8">
+              <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                Email Address <span class="text-red-600">*</span>
+              </label>
+              <input type="email" id="email" placeholder="your@email.com" required
+                class="w-full bg-input border border-border rounded-lg px-[18px] py-3.5 text-sm font-light text-light placeholder-[#333] outline-none focus:border-[#555] transition-colors duration-200" />
+            </div>
+    
+            <div class="mb-8">
+              <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                Phone Number <span class="text-red-600">*</span>
+              </label>
+              <input type="text" id="phone" placeholder="+234 000 000 0000" required
+                class="w-full bg-input border border-border rounded-lg px-[18px] py-3.5 text-sm font-light text-light placeholder-[#333] outline-none focus:border-[#555] transition-colors duration-200" />
+            </div>
+    
+            <div class="mb-8">
+              <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                Preferred Mode of Contact <span class="text-red-600">*</span>
+              </label>
+              <div class="flex flex-col gap-2.5">
+                <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                  <input type="radio" name="contact_mode" value="Call" class="radio-dot" />
+                  <span class="text-sm font-light text-body">Call</span>
+                </label>
+                <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                  <input type="radio" name="contact_mode" value="WhatsApp" class="radio-dot" />
+                  <span class="text-sm font-light text-body">WhatsApp</span>
+                </label>
+                <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                  <input type="radio" name="contact_mode" value="Email" class="radio-dot" />
+                  <span class="text-sm font-light text-body">Email</span>
+                </label>
+                <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                  <input type="radio" name="contact_mode" value="other" class="radio-dot" onchange="showOther('contact-other')" />
+                  <span class="text-sm font-light text-body">Other</span>
+                </label>
+              </div>
+              <div class="other-reveal mt-2" id="contact-other">
+                <input type="text" id="contact_mode_other" placeholder="Please specify…"
+                  class="w-full bg-input border border-border rounded-lg px-[18px] py-3 text-[13px] font-light text-light placeholder-[#333] outline-none focus:border-[#555] transition-colors duration-200" />
+              </div>
+            </div>
+    
+            <div class="border-t border-border my-8 pt-8">
+              <p class="text-[10px] tracking-widest2 text-muted uppercase font-medium mb-8">Event Details</p>
+    
+              <div class="mb-8">
+                <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                  Event Type <span class="text-red-600">*</span>
+                </label>
+                <div class="flex flex-col gap-2.5">
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="event_type" value="Wedding" class="radio-dot" />
+                    <span class="text-sm font-light text-body">Wedding</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="event_type" value="Birthday party" class="radio-dot" />
+                    <span class="text-sm font-light text-body">Birthday party</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="event_type" value="Concert" class="radio-dot" />
+                    <span class="text-sm font-light text-body">Concert</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="event_type" value="Hangout / Get-together" class="radio-dot" />
+                    <span class="text-sm font-light text-body">Hangout / Get-together</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="event_type" value="Corporate event" class="radio-dot" />
+                    <span class="text-sm font-light text-body">Corporate event</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="event_type" value="other" class="radio-dot" onchange="showOther('event-other')" />
+                    <span class="text-sm font-light text-body">Other</span>
+                  </label>
+                </div>
+                <div class="other-reveal mt-2" id="event-other">
+                  <input type="text" id="event_type_other" placeholder="Please specify…"
+                    class="w-full bg-input border border-border rounded-lg px-[18px] py-3 text-[13px] font-light text-light placeholder-[#333] outline-none focus:border-[#555] transition-colors duration-200" />
+                </div>
+              </div>
+    
+              <div class="mb-8">
+                <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                  Date of the Event <span class="text-red-600">*</span>
+                </label>
+                <input type="date" id="event_date" required
+                  onmouseover="this.showPicker()"
+                  class="w-full bg-input border border-border rounded-lg px-[18px] py-3.5 text-sm font-light text-light outline-none focus:border-[#555] transition-colors duration-200" />
+              </div>
+    
+              <div class="grid grid-cols-2 gap-5 mb-8">
+                <div>
+                  <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                    DJ Set Start Time <span class="text-red-600">*</span>
+                  </label>
+                  <input type="time" id="set_start" required
+                    
+                    class="w-full bg-input border border-border rounded-lg px-[18px] py-3.5 text-sm font-light text-light outline-none focus:border-[#555] transition-colors duration-200" />
+                </div>
+                <div>
+                  <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                    DJ Set Finish Time <span class="text-red-600">*</span>
+                  </label>
+                  <input type="time" id="set_finish" required
+                    
+                    class="w-full bg-input border border-border rounded-lg px-[18px] py-3.5 text-sm font-light text-light outline-none focus:border-[#555] transition-colors duration-200" />
+                </div>
+              </div>
+    
+              <div class="mb-8">
+                <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                  Number of Guests <span class="text-red-600">*</span>
+                </label>
+                <div class="flex flex-col gap-2.5">
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="guests" value="0 – 50" class="radio-dot" />
+                    <span class="text-sm font-light text-body">0 – 50</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="guests" value="50 – 100" class="radio-dot" />
+                    <span class="text-sm font-light text-body">50 – 100</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="guests" value="100 – 150" class="radio-dot" />
+                    <span class="text-sm font-light text-body">100 – 150</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="guests" value="150 – 200" class="radio-dot" />
+                    <span class="text-sm font-light text-body">150 – 200</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="guests" value="200 – 400" class="radio-dot" />
+                    <span class="text-sm font-light text-body">200 – 400</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="guests" value="500 & above" class="radio-dot" />
+                    <span class="text-sm font-light text-body">500 &amp; above</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="guests" value="other" class="radio-dot" onchange="showOther('guests-other')" />
+                    <span class="text-sm font-light text-body">Other</span>
+                  </label>
+                </div>
+                <div class="other-reveal mt-2" id="guests-other">
+                  <input type="text" id="guests_other" placeholder="Please specify…"
+                    class="w-full bg-input border border-border rounded-lg px-[18px] py-3 text-[13px] font-light text-light placeholder-[#333] outline-none focus:border-[#555] transition-colors duration-200" />
+                </div>
+              </div>
+    
+              <div class="mb-8">
+                <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                  Location of the Event <span class="text-red-600">*</span>
+                </label>
+                <textarea id="location" rows="3" placeholder="Include the name and full address of the venue" required
+                  class="w-full bg-input border border-border rounded-lg px-[18px] py-3.5 text-sm font-light text-light placeholder-[#333] outline-none focus:border-[#555] transition-colors duration-200 resize-y leading-relaxed"></textarea>
+              </div>
+            </div>
+    
+            <div class="border-t border-border my-8 pt-8">
+              <p class="text-[10px] tracking-widest2 text-muted uppercase font-medium mb-8">Equipment &amp; Music</p>
+    
+              <div class="mb-8">
+                <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                  Sound System (Speakers) Needed? <span class="text-red-600">*</span>
+                </label>
+                <div class="flex flex-col gap-2.5">
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="sound" value="Yes — it is needed" class="radio-dot" />
+                    <span class="text-sm font-light text-body">Yes — it is needed</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="sound" value="No — the venue has their own" class="radio-dot" />
+                    <span class="text-sm font-light text-body">No — the venue has their own</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="sound" value="Not sure yet" class="radio-dot" />
+                    <span class="text-sm font-light text-body">Not sure yet</span>
+                  </label>
+                </div>
+              </div>
+    
+              <div class="mb-8">
+                <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                  Power (Generator) Needed? <span class="text-red-600">*</span>
+                </label>
+                <div class="flex flex-col gap-2.5">
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="power" value="Yes — it is needed" class="radio-dot" />
+                    <span class="text-sm font-light text-body">Yes — it is needed</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="power" value="No — the venue has their own" class="radio-dot" />
+                    <span class="text-sm font-light text-body">No — the venue has their own</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="power" value="Not sure yet" class="radio-dot" />
+                    <span class="text-sm font-light text-body">Not sure yet</span>
+                  </label>
+                </div>
+              </div>
+    
+              <div class="mb-8">
+                <label class="block text-[14px] font-medium tracking-widest2 text-white uppercase mb-2.5">
+                  Type of Music <span class="text-red-600">*</span>
+                </label>
+                <div class="flex flex-col gap-2.5">
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="music" value="Secular" class="radio-dot" />
+                    <span class="text-sm font-light text-body">Secular</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="music" value="Gospel" class="radio-dot" />
+                    <span class="text-sm font-light text-body">Gospel</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="music" value="A touch of both" class="radio-dot" />
+                    <span class="text-sm font-light text-body">A touch of both</span>
+                  </label>
+                  <label class="flex items-center gap-3.5 px-[18px] py-3.5 bg-input border border-border rounded-lg cursor-pointer hover:border-borderhover hover:bg-[#111] transition-all duration-200">
+                    <input type="radio" name="music" value="other" class="radio-dot" onchange="showOther('music-other')" />
+                    <span class="text-sm font-light text-body">Other</span>
+                  </label>
+                </div>
+                <div class="other-reveal mt-2" id="music-other">
+                  <input type="text" id="music_other" placeholder="Please specify…"
+                    class="w-full bg-input border border-border rounded-lg px-[18px] py-3 text-[13px] font-light text-light placeholder-[#333] outline-none focus:border-[#555] transition-colors duration-200" />
+                </div>
+              </div>
+            </div>
+    
+            <button type="submit" id="submit-btn"
+              class="font-dm w-full bg-white text-black text-[12px] font-medium tracking-[0.2em] uppercase rounded-lg py-4 hover:bg-gray-200 active:scale-[0.99] transition-all duration-200 mt-2">
+              Book Event
+            </button>
+    
+          </div>
+        </form>
+    
+    </div>
+
+</div>
+  <script>
+    // ─── REPLACE THESE THREE VALUES ───────────────────────────────────────────
+    const EMAILJS_PUBLIC_KEY  = 'ee3cayHMcdQtwggm2';   // Account → API Keys
+    const EMAILJS_SERVICE_ID  = 'service_bhndpbi';   // Email Services tab
+    const EMAILJS_TEMPLATE_ID = 'template_x4eqq4s';  // Email Templates tab
+    // ─────────────────────────────────────────────────────────────────────────
+ 
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+ 
+    function getRadioValue(name) {
+      const checked = document.querySelector('input[name="' + name + '"]:checked');
+      return checked ? checked.value : 'Not specified';
+    }
+ 
+    function showOther(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add('visible');
+      const radioName = id.replace('-other', '');
+      document.querySelectorAll('input[name="' + radioName + '"]').forEach(function(r) {
+        if (r.value !== 'other') {
+          r.addEventListener('change', function() { el.classList.remove('visible'); });
+        }
+      });
+    }
+ 
+    document.getElementById('booking-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+ 
+      const btn = document.getElementById('submit-btn');
+      const errorBanner = document.getElementById('error-msg');
+      errorBanner.classList.add('hidden');
+ 
+      // Resolve "other" free-text fields
+      const contactRaw = getRadioValue('contact_mode');
+      const contactMode = contactRaw === 'other'
+        ? (document.getElementById('contact_mode_other').value.trim() || 'Other')
+        : contactRaw;
+ 
+      const eventRaw = getRadioValue('event_type');
+      const eventType = eventRaw === 'other'
+        ? (document.getElementById('event_type_other').value.trim() || 'Other')
+        : eventRaw;
+ 
+      const guestsRaw = getRadioValue('guests');
+      const guests = guestsRaw === 'other'
+        ? (document.getElementById('guests_other').value.trim() || 'Other')
+        : guestsRaw;
+ 
+      const musicRaw = getRadioValue('music');
+      const music = musicRaw === 'other'
+        ? (document.getElementById('music_other').value.trim() || 'Other')
+        : musicRaw;
+ 
+      const templateParams = {
+        to_email:     'bookings@djclassixentertainment.com',
+        full_name:    document.getElementById('full_name').value,
+        email:        document.getElementById('email').value,
+        phone:        document.getElementById('phone').value,
+        contact_mode: contactMode,
+        event_type:   eventType,
+        event_date:   document.getElementById('event_date').value,
+        set_start:    document.getElementById('set_start').value,
+        set_finish:   document.getElementById('set_finish').value,
+        guests:       guests,
+        location:     document.getElementById('location').value,
+        sound:        getRadioValue('sound'),
+        power:        getRadioValue('power'),
+        music:        music,
+      };
+ 
+      // Loading state
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+ 
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+        document.getElementById('booking-form').classList.add('hidden');
+        document.getElementById('success-msg').classList.remove('hidden');
+      } catch (err) {
+        console.error('EmailJS error:', err);
+        btn.disabled = false;
+        btn.textContent = 'Book Event';
+        errorBanner.classList.remove('hidden');
+        errorBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  </script>
+  <footer class="bg-[#0a0a0a] border-t border-white/10">
+    <div class="max-w-[1200px] mx-auto px-10 py-14 flex flex-col md:flex-row justify-between items-center gap-10">
+      <div class="flex flex-col gap-7 items-start">
+        <img src="images/Home/DJCE1.png" class="h-10 w-auto object-contain" alt="Logo"/>
+        <div class="flex gap-4">
+          <a href="https://www.tiktok.com/@djclassix_" target="_blank" class="w-10 h-10 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#333] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16" height="16" fill="white"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72c0 84.76-68.71 153.47-153.47 153.47S18.29 434.14 18.29 349.38s68.71-153.47 153.47-153.47V256c-51.62 0-93.47 41.85-93.47 93.38s41.85 93.47 93.47 93.47 93.47-41.85 93.47-93.47V0h60c1.84 83.33 69.15 150.27 152.77 152.11v57.8z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/djclassix_" target="_blank" class="w-10 h-10 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#333] transition-colors">
+            <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@djclassix_" target="_blank" class="group w-10 h-10 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#333] transition-colors">
+            <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a1a1a" class="group-hover:fill-[#333] transition-colors"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-8">
+        <div class="flex items-center gap-4">
+          <div class="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center">
+            <svg width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <p class="font-bold text-[0.85rem] text-white uppercase tracking-wider">Email</p>
+            <p class="text-[0.9rem] text-[#666]">officialdjclassix@gmail.com</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center">
+            <svg width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div>
+            <p class="font-bold text-[0.85rem] text-white uppercase tracking-wider">Mobile</p>
+            <p class="text-[0.9rem] text-[#666]">+234 802 598 1080</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/5 py-6 text-center">
+      <p class="text-[0.75rem] text-[#444] tracking-widest uppercase font-medium">Copyright &copy; 2026 – DJ Classix</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+    const overlayBg = document.getElementById('overlay-bg');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openMenu() {
+      sidebar.classList.remove('-translate-x-full');
+      overlayBg.classList.remove('hidden');
+      document.body.style.overflow = "hidden";
+    }
+    function closeMenu() {
+      sidebar.classList.add('-translate-x-full');
+      overlayBg.classList.add('hidden');
+      document.body.style.overflow = "auto";
+    }
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlayBg.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+  </script>
+</body>
+</html>
