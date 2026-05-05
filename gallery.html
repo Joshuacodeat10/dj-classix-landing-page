@@ -1,59 +1,700 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Development | DJ Classix Entertainment</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes pulse-subtle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DJ Classix Entertainment</title>
+  
+  <!-- Favicon & Scripts -->
+  <link rel="icon" href="images/Home/favicon.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // General Palette
+            gold: '#c9a84c',
+            spotifyGreen: '#22c55e',
+            black: '#0a0a0a',
+            dark: '#111111',
+            card: '#161616',
+            border: '#2a2a2a',
+            goldlt: '#e8c96a',
+            golddim: '#a07830',
+            cream: '#f5f0e8',
+            muted: '#888888',
+            dimmed: '#444444',
+            // Retro Specific Palette
+            retro: {
+              black: '#0a0a0a',
+              dark: '#111111',
+              card: '#161616',
+              border: '#2a2a2a',
+              gold: '#c9a84c',
+              goldlt: '#e8c96a',
+              golddim: '#a07830',
+              cream: '#f5f0e8',
+              muted: '#888888',
+              dimmed: '#444444',
+            },
+          },
+          fontFamily: {
+            dm: ['"DM Sans"', 'sans-serif'],
+            sans: ['"DM Sans"', 'sans-serif'],
+          },
+          backgroundImage: {
+            'hero-gradient': 'linear-gradient(to bottom, rgba(15,15,15,0.75) 0%, rgba(20,20,20,0.65) 50%, rgba(10,10,10,0.90) 100%)',
+            'hero-radial': 'radial-gradient(ellipse at 20% 50%, rgba(30,30,30,0.50) 0%, transparent 60%), radial-gradient(ellipse at 80% 40%, rgba(40,40,40,0.40) 0%, transparent 55%)',
+            'dots-pattern': 'radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)',
+            'about-overlay': 'linear-gradient(to right, #0d0d0d 35%, rgba(13,13,13,0.78) 55%, rgba(13,13,13,0.12) 100%), linear-gradient(to bottom, rgba(13,13,13,0) 70%, #0d0d0d 100%)',
+          },
+          keyframes: {
+            marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-50%)' } },
+            shimmer: { to: { backgroundPosition: '200% center' } },
+            fadeUp: { from: { opacity: '0', transform: 'translateY(18px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+            fadeLeft: { from: { opacity: '0', transform: 'translateX(-24px)' }, to: { opacity: '1', transform: 'translateX(0)' } },
+            fadeIn: { from: { opacity: '0' }, to: { opacity: '1' } },
+            scaleIn: { from: { opacity: '0', transform: 'scale(0.97)' }, to: { opacity: '1', transform: 'scale(1)' } },
+            slideLeft: { from: { opacity: '0', transform: 'translateX(60px)' }, to: { opacity: '1', transform: 'translateX(0)' } },
+            slideRight: { from: { opacity: '0', transform: 'translateX(-60px)' }, to: { opacity: '1', transform: 'translateX(0)' } },
+            kenBurns: { '0%': { transform: 'scale(1) translate(0,0)' }, '100%': { transform: 'scale(1.08) translate(-1%,-1%)' } },
+            pulse: { '0%,100%': { opacity: '1' }, '50%': { opacity: '0.5' } },
+          },
+          animation: {
+            'marquee': 'marquee 28s linear infinite',
+            'shimmer': 'shimmer 4s linear infinite',
+            'fade-up': 'fadeUp 0.5s ease forwards',
+            'fadeUp': 'fadeUp 0.9s ease both',
+            'fadeLeft': 'fadeLeft 0.8s ease both',
+            'fade-in': 'fadeIn 0.4s ease forwards',
+            'scale-in': 'scaleIn 0.5s ease forwards',
+            'slide-left': 'slideLeft 0.5s cubic-bezier(0.22,1,0.36,1) forwards',
+            'slide-right': 'slideRight 0.5s cubic-bezier(0.22,1,0.36,1) forwards',
+            'ken-burns': 'kenBurns 8s ease-in-out infinite alternate',
+            'pulse-slow': 'pulse 2s ease-in-out infinite',
+          },
         }
-        .pulse-text {
-            animation: pulse-subtle 3s infinite ease-in-out;
-        }
-    </style>
+      }
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer base {
+      html { font-family: "DM Sans", sans-serif; }
+    }
+    @layer utilities {
+      .delay-100 { animation-delay: 0.1s; }
+      .delay-300 { animation-delay: 0.3s; }
+      .delay-350 { animation-delay: 0.35s; }
+      .delay-450 { animation-delay: 0.45s; }
+      .delay-500 { animation-delay: 0.5s; }
+      .delay-550 { animation-delay: 0.55s; }
+      .delay-750 { animation-delay: 0.75s; }
+    }
+  </style>
 </head>
-<body class="bg-[#0a0a0a] text-white font-sans selection:bg-white selection:text-black">
 
-    <div class="min-h-screen flex flex-col items-center justify-center px-6 py-20">
-        
-        <div class="mb-12">
-            <img src="images/Home/DJCE1.png" class="h-10 md:h-12 w-auto object-contain opacity-90" alt="Logo"/>
+<body class="bg-retro-black font-sans antialiased overflow-x-hidden">
+
+  <!-- GRAIN -->
+  <!-- <div class="pointer-events-none fixed inset-0 z-0 opacity-[0.04]"
+       style="background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');background-size:128px">
+  </div> -->
+
+  <!-- TICKER
+  <div class="relative z-10 bg-retro-gold py-2 overflow-hidden whitespace-nowrap">
+    <div class="inline-block animate-marquee">
+      <span class="text-[11px] font-bold tracking-[0.14em] text-retro-black uppercase">
+        ★ DJ CLASSIX &nbsp;&nbsp;·&nbsp;&nbsp; GALLERY &nbsp;&nbsp;·&nbsp;&nbsp; ROOFTOP Y2K EDITION &nbsp;&nbsp;·&nbsp;&nbsp; AFRO-GOSPEL CULTURE &nbsp;&nbsp;·&nbsp;&nbsp; SURULERE, LAGOS &nbsp;&nbsp;·&nbsp;&nbsp; MOMENTS &amp; MEMORIES &nbsp;&nbsp;·&nbsp;&nbsp;
+        ★ DJ CLASSIX &nbsp;&nbsp;·&nbsp;&nbsp; GALLERY &nbsp;&nbsp;·&nbsp;&nbsp; ROOFTOP Y2K EDITION &nbsp;&nbsp;·&nbsp;&nbsp; AFRO-GOSPEL CULTURE &nbsp;&nbsp;·&nbsp;&nbsp; SURULERE, LAGOS &nbsp;&nbsp;·&nbsp;&nbsp; MOMENTS &amp; MEMORIES &nbsp;&nbsp;·&nbsp;&nbsp;
+      </span>
+    </div>
+  </div> -->
+  <nav class="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 md:px-10 h-16 bg-[#0a0a0a]/85 backdrop-blur-md border-b border-white/5">
+  <button id="menu-btn" class="md:hidden flex flex-col justify-center items-center w-10 h-10 relative z-[110]" aria-label="Open Menu">
+    <span class="w-6 h-[2px] bg-white mb-1.5 transition-all duration-300"></span>
+    <span class="w-6 h-[2px] bg-white mb-1.5 transition-all duration-300"></span>
+    <span class="w-6 h-[2px] bg-white transition-all duration-300"></span>
+  </button>
+
+  <img src="images/Home/DJCE1.png" class="h-8 md:h-10 w-auto object-contain" alt="Logo"/>
+
+  <ul class="hidden md:flex gap-5 list-none">
+    <li><a href="https://djclassixentertainment.com" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Home</a></li>
+    <li><a href="about" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">About</a></li>
+    <li><a href="booking" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Booking</a></li>
+    <li><a href="music" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Music</a></li>
+    <li><a href="events" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Events</a></li>
+    <li><a href="gallery" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Gallery</a></li>
+    <li><a href="shop" class="font-bold text-[0.8rem] tracking-[0.18em] uppercase text-white hover:text-white/70 transition-colors">Shop</a></li>
+  </ul>
+
+  <a href="booking" class="hidden sm:block font-bold text-[0.75rem] tracking-[0.15em] uppercase text-white border-[1.5px] border-white px-5 py-2 hover:bg-white hover:text-black transition-all">Book Event</a>
+</nav>
+
+<div id="sidebar" class="fixed inset-y-0 left-0 w-[280px] bg-[#0a0a0a] z-[105] flex flex-col p-10 transition-transform duration-500 ease-in-out -translate-x-full border-r border-white/10 shadow-2xl">
+  <button id="close-btn" class="self-end text-white p-2 mb-10 hover:rotate-90 transition-transform duration-300">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+
+  <div class="flex flex-col gap-6">
+    <a href="https://djclassixentertainment.com" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Home</a>
+    <a href="about" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">About</a>
+    <a href="booking" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Booking</a>
+    <a href="music" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Music</a>
+    <a href="events" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Events</a>
+    <a href="gallery" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Gallery</a>
+    <a href="shop" class="mobile-link font-bold text-3xl tracking-tight uppercase text-white">Shop</a>
+    
+    <div class="h-[1px] w-12 bg-white/20 my-4"></div>
+    
+    <a href="booking" class="mobile-link font-bold text-sm tracking-[0.2em] uppercase text-black bg-white px-6 py-4 text-center">Book Event</a>
+  </div>
+</div>
+  <!-- GALLERY SECTION -->
+  <section id="gallery" class="relative z-10 bg-retro-black py-20">
+    <div class="max-w-[1200px] mx-auto px-6">
+
+      <!-- ── Section Header ── -->
+      <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+        <div>
+          <div class="flex items-center gap-3 mb-2.5">
+            <span class="text-[10px] font-bold uppercase tracking-[0.12em] bg-retro-gold text-retro-black px-2 py-0.5">Gallery</span>
+            <div class="flex-1 h-px bg-retro-border min-w-[40px]"></div>
+            <span class="text-[11px] font-semibold tracking-[0.08em] text-retro-gold border border-retro-border px-2.5 py-0.5">10 Photos</span>
+          </div>
+          <h2 class="text-[clamp(36px,6vw,64px)] font-extrabold leading-none tracking-tight text-retro-cream m-0">
+            THE<br>
+            <span class="bg-[linear-gradient(90deg,#c9a84c_0%,#e8c96a_40%,#c9a84c_60%,#a07830_100%)] bg-clip-text text-transparent animate-shimmer"
+                  style="background-size:200% auto">MOMENTS</span>
+          </h2>
+        </div>
+        <!-- Slideshow controls -->
+        <div class="flex items-center gap-2">
+          <button id="autoplayBtn"
+                  class="flex items-center gap-2 px-4 py-2 border border-retro-gold text-retro-gold
+                         text-[10px] font-bold tracking-[0.12em] uppercase
+                         transition-colors duration-200 hover:bg-retro-gold hover:text-retro-black cursor-pointer bg-transparent">
+            <span id="autoplayIcon">
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor"><polygon points="2,1 11,6 2,11"/></svg>
+            </span>
+            <span id="autoplayLabel">Auto</span>
+          </button>
+          <button id="prevSlide"
+                  class="w-[42px] h-[42px] flex items-center justify-center border border-retro-border bg-retro-card text-retro-cream transition-colors duration-200 hover:bg-retro-gold hover:border-retro-gold hover:text-retro-black cursor-pointer">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.5 3L5.5 8l5 5"/></svg>
+          </button>
+          <button id="nextSlide"
+                  class="w-[42px] h-[42px] flex items-center justify-center border border-retro-border bg-retro-card text-retro-cream transition-colors duration-200 hover:bg-retro-gold hover:border-retro-gold hover:text-retro-black cursor-pointer">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5.5 3l5 5-5 5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Dashed rule -->
+      <div class="border-t border-dashed border-retro-border mb-10"></div>
+
+      <!-- ── HERO SLIDESHOW ── -->
+      <div class="relative mb-4 overflow-hidden border border-retro-border bg-retro-dark"
+           id="heroSlider" style="aspect-ratio:16/7;">
+
+        <!-- Slides container -->
+        <div id="slidesContainer" class="w-full h-full relative">
+          <!-- slides injected by JS -->
         </div>
 
-        <div class="max-w-[500px] w-full bg-[#111] border border-white/5 rounded-2xl p-10 md:p-16 text-center shadow-2xl">
-            
-            <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center mx-auto mb-10">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-white/60">
-                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-                </svg>
-            </div>
+        <!-- Left / right edge gradients -->
+        <div class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-black/60 to-transparent pointer-events-none z-10"></div>
+        <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black/60 to-transparent pointer-events-none z-10"></div>
 
-            <p class="text-[12px] tracking-[0.3em] text-white/40 uppercase font-medium mb-4 pulse-text">Work in Progress</p>
-            
-            <h1 class="text-3xl md:text-4xl font-light tracking-[0.1em] uppercase mb-6">Coming Soon</h1>
-            
-            <p class="text-[14px] text-white/50 font-light leading-relaxed mb-10">
-                We are currently building something exceptional. <br class="hidden md:block"> 
-                This page will be live shortly.
+        <!-- Bottom info bar -->
+        <div class="absolute bottom-0 inset-x-0 z-20 px-6 py-5
+                    bg-gradient-to-t from-black/90 via-black/60 to-transparent
+                    flex items-end justify-between gap-4 flex-wrap">
+          <div>
+            <p class="text-[10px] font-semibold tracking-[0.18em] text-retro-muted uppercase mb-1">DJ Classix</p>
+            <p id="slideCaption" class="text-xl font-bold text-retro-cream tracking-tight leading-tight">
+              Rooftop Experience
             </p>
-
-            <a href="index.html" 
-               class="inline-block w-full bg-white text-black text-[12px] font-bold tracking-[0.2em] uppercase rounded-lg py-4 hover:bg-gray-200 active:scale-[0.98] transition-all duration-200">
-                Return Home
-            </a>
-            
+          </div>
+          <div class="flex items-center gap-3">
+            <!-- Counter -->
+            <span id="slideCounter" class="text-[11px] font-bold tracking-[0.1em] text-retro-gold border border-retro-border bg-retro-black/60 px-2.5 py-1">
+              01 / 10
+            </span>
+          </div>
         </div>
 
-        <div class="mt-12">
-            <p class="text-[10px] tracking-[0.2em] text-white/20 uppercase font-medium">
-                © 2026 DJ Classix Entertainment Ltd.
-            </p>
+        <!-- Prev / Next overlays on hero -->
+        <button id="heroPrev"
+                class="absolute left-4 top-1/2 -translate-y-1/2 z-20
+                       w-12 h-12 flex items-center justify-center
+                       bg-retro-black/60 border border-retro-border text-retro-cream
+                       transition-all duration-200
+                       hover:bg-retro-gold hover:border-retro-gold hover:text-retro-black
+                       cursor-pointer backdrop-blur-sm">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.5 3L5.5 8l5 5"/></svg>
+        </button>
+        <button id="heroNext"
+                class="absolute right-4 top-1/2 -translate-y-1/2 z-20
+                       w-12 h-12 flex items-center justify-center
+                       bg-retro-black/60 border border-retro-border text-retro-cream
+                       transition-all duration-200
+                       hover:bg-retro-gold hover:border-retro-gold hover:text-retro-black
+                       cursor-pointer backdrop-blur-sm">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5.5 3l5 5-5 5"/></svg>
+        </button>
+
+        <!-- Progress bar -->
+        <div class="absolute top-0 inset-x-0 h-[2px] bg-retro-border z-30">
+          <div id="progressBar" class="h-full bg-retro-gold transition-none" style="width:0%"></div>
         </div>
+      </div>
+
+      <!-- ── DOTS ── -->
+      <div id="heroDots" class="flex items-center justify-center gap-2 mb-10"></div>
+
+      <!-- ── THUMBNAIL STRIP ── -->
+      <div class="flex items-center gap-3 mb-4 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide"
+           id="thumbStrip"
+           style="scrollbar-width:none;">
+        <!-- thumbs injected by JS -->
+      </div>
+
+      <!-- Divider -->
+      <div class="flex items-center my-8">
+        <div class="flex-1 h-px bg-retro-border"></div>
+        <span class="text-[10px] tracking-[0.20em] uppercase text-retro-dimmed px-3 whitespace-nowrap">All Photos</span>
+        <div class="flex-1 h-px bg-retro-border"></div>
+      </div>
+
+      <!-- ── MASONRY-STYLE GRID ── -->
+      <div id="masonryGrid"
+           class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-10">
+        <!-- grid cards injected by JS -->
+      </div>
 
     </div>
+  </section>
 
+  <!-- ── LIGHTBOX ── -->
+  <div id="lightbox"
+       class="fixed inset-0 z-50 bg-black/95 flex items-center justify-center
+              opacity-0 pointer-events-none transition-opacity duration-300"
+       onclick="closeLightbox(event)">
+
+    <!-- Close -->
+    <button onclick="closeLightboxBtn()"
+            class="absolute top-5 right-5 w-10 h-10 flex items-center justify-center
+                   border border-retro-border bg-retro-card text-retro-cream z-10
+                   hover:bg-retro-gold hover:border-retro-gold hover:text-retro-black
+                   transition-colors duration-150 cursor-pointer">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M1 1l12 12M13 1L1 13"/>
+      </svg>
+    </button>
+
+    <!-- Prev -->
+    <button id="lbPrev"
+            class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12
+                   flex items-center justify-center
+                   border border-retro-border bg-retro-card text-retro-cream
+                   hover:bg-retro-gold hover:border-retro-gold hover:text-retro-black
+                   transition-colors duration-150 cursor-pointer z-10">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.5 3L5.5 8l5 5"/></svg>
+    </button>
+
+    <!-- Image -->
+    <div class="max-w-5xl w-full mx-16 flex flex-col items-center gap-4">
+      <img id="lbImg" src="" alt=""
+           class="max-h-[80vh] w-auto max-w-full object-contain border border-retro-border shadow-[0_0_80px_rgba(0,0,0,0.8)]
+                  animate-scale-in"/>
+      <div class="flex items-center gap-4">
+        <p id="lbCaption" class="text-[13px] font-semibold text-retro-muted tracking-[0.1em] uppercase"></p>
+        <span id="lbCounter" class="text-[11px] font-bold text-retro-gold border border-retro-border px-2 py-0.5">01 / 10</span>
+      </div>
+    </div>
+
+    <!-- Next -->
+    <button id="lbNext"
+            class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12
+                   flex items-center justify-center
+                   border border-retro-border bg-retro-card text-retro-cream
+                   hover:bg-retro-gold hover:border-retro-gold hover:text-retro-black
+                   transition-colors duration-150 cursor-pointer z-10">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5.5 3l5 5-5 5"/></svg>
+    </button>
+  </div>
+
+  <script>
+    const photos = [
+      { src: 'images/Gallery/_DSC1351.JPG',  caption: 'Rooftop Vibes' },
+      { src: 'images/Gallery/_DSC1488.JPG',  caption: 'On the Decks' },
+      { src: 'images/Gallery/DSC00003.JPG',  caption: 'The Crowd' },
+      { src: 'images/Gallery/DSC00016.JPG',  caption: 'Golden Hour' },
+      { src: 'images/Gallery/DSC00020.JPG',  caption: 'Lagos Nights' },
+      { src: 'images/Gallery/_DSC1130.JPG',  caption: 'In the Mix' },
+      { src: 'images/Gallery/_DSC1142.JPG',  caption: 'Good Energy' },
+      { src: 'images/Gallery/_DSC1164.JPG',  caption: 'Afro-Gospel Set' },
+      { src: 'images/Gallery/_DSC1173.JPG',  caption: 'Classix Crowd' },
+      { src: 'images/Gallery/_DSC1175.JPG',  caption: 'Moment Captured' },
+    ];
+
+    let current    = 0;
+    let autoplay   = false;
+    let autoTimer  = null;
+    let progTimer  = null;
+    let progValue  = 0;
+    let direction  = 'next'; // 'next' | 'prev'
+    const DURATION = 4000;
+
+    /* ── Helpers ── */
+    const $  = id => document.getElementById(id);
+    const pc = n  => String(n + 1).padStart(2, '0');
+
+    /* ── Build hero slides ── */
+    const container = $('slidesContainer');
+    photos.forEach((p, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'absolute inset-0 opacity-0 transition-none';
+      slide.id = `slide-${i}`;
+      slide.innerHTML = `
+        <img src="${p.src}" alt="${p.caption}"
+             class="w-full h-full object-cover"
+             id="slide-img-${i}"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20"></div>
+      `;
+      container.appendChild(slide);
+    });
+
+    /* ── Build thumb strip ── */
+    const strip = $('thumbStrip');
+    photos.forEach((p, i) => {
+      const t = document.createElement('div');
+      t.id = `thumb-${i}`;
+      t.className = [
+        'thumb-item flex-shrink-0 snap-start cursor-pointer overflow-hidden',
+        'w-24 h-16 border transition-all duration-200',
+        i === 0 ? 'border-retro-gold' : 'border-retro-border',
+        'hover:border-retro-gold group relative',
+      ].join(' ');
+      t.innerHTML = `
+        <img src="${p.src}" alt="${p.caption}" loading="lazy"
+             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
+        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="#c9a84c"><polygon points="3,2 13,8 3,14"/></svg>
+        </div>
+      `;
+      t.addEventListener('click', () => goTo(i, i > current ? 'next' : 'prev'));
+      strip.appendChild(t);
+    });
+
+    /* ── Build dots ── */
+    const dotsEl = $('heroDots');
+    photos.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.id = `dot-${i}`;
+      d.className = [
+        'h-1.5 rounded-full cursor-pointer transition-all duration-[250ms]',
+        i === 0 ? 'bg-retro-gold w-5 rounded-[3px]' : 'bg-retro-border w-1.5',
+      ].join(' ');
+      d.addEventListener('click', () => goTo(i, i > current ? 'next' : 'prev'));
+      dotsEl.appendChild(d);
+    });
+
+    /* ── Build masonry grid ── */
+    const gridEl = $('masonryGrid');
+    photos.forEach((p, i) => {
+      const card = document.createElement('div');
+      // Vary heights for a masonry feel using row-span
+      const tall  = (i === 0 || i === 4 || i === 8);
+      const wider = (i === 2 || i === 6);
+      card.className = [
+        'overflow-hidden cursor-pointer border border-retro-border',
+        'transition-all duration-[250ms] ease-out group relative',
+        'hover:-translate-y-1 hover:border-retro-gold',
+        'hover:shadow-[0_12px_32px_rgba(201,168,76,0.12)]',
+        'animate-fade-up opacity-0',
+        tall   ? 'row-span-2' : '',
+        wider  ? 'col-span-2 md:col-span-1' : '',
+      ].join(' ');
+      card.style.animationDelay = `${i * 0.06}s`;
+      card.style.aspectRatio = tall ? '3/4' : '4/3';
+
+      card.innerHTML = `
+        <img src="${p.src}" alt="${p.caption}" loading="lazy"
+             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.07]"/>
+        <!-- Overlay on hover -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent
+                    opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                    flex flex-col justify-end px-4 py-4">
+          <p class="text-[9px] font-bold tracking-[0.18em] uppercase text-retro-gold mb-1">
+            ${pc(i)} / ${pc(photos.length - 1)}
+          </p>
+          <p class="text-[13px] font-bold text-retro-cream leading-tight">${p.caption}</p>
+          <div class="mt-2 flex items-center gap-1.5">
+            <div class="w-4 h-[1px] bg-retro-gold"></div>
+            <span class="text-[9px] font-bold tracking-[0.1em] uppercase text-retro-gold">View</span>
+          </div>
+        </div>
+      `;
+      card.addEventListener('click', () => openLightbox(i));
+      gridEl.appendChild(card);
+    });
+
+    /* ── Slide transition ── */
+    function showSlide(idx, dir) {
+      const prev = $(`slide-${current}`);
+      const next = $(`slide-${idx}`);
+
+      // Animate out current
+      prev.style.transition  = 'opacity 0.55s ease, transform 0.55s ease';
+      prev.style.opacity     = '0';
+      prev.style.transform   = dir === 'next' ? 'translateX(-30px)' : 'translateX(30px)';
+      prev.style.zIndex      = '1';
+
+      // Prepare next
+      next.style.transition  = 'none';
+      next.style.opacity     = '0';
+      next.style.transform   = dir === 'next' ? 'translateX(30px)' : 'translateX(-30px)';
+      next.style.zIndex      = '2';
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          next.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+          next.style.opacity    = '1';
+          next.style.transform  = 'translateX(0)';
+        });
+      });
+
+      // Ken Burns on hero image
+      const img = $(`slide-img-${idx}`);
+      img.style.animation = 'none';
+      void img.offsetWidth;
+      img.style.animation = 'kenBurns 8s ease-in-out infinite alternate';
+
+      // Update caption & counter
+      $('slideCaption').textContent = photos[idx].caption;
+      $('slideCounter').textContent = `${pc(idx)} / ${pc(photos.length - 1)}`;
+
+      // Update dots
+      photos.forEach((_, i) => {
+        const d = $(`dot-${i}`);
+        if (i === idx) {
+          d.className = 'h-1.5 rounded-[3px] cursor-pointer transition-all duration-[250ms] bg-retro-gold w-5';
+        } else {
+          d.className = 'h-1.5 rounded-full cursor-pointer transition-all duration-[250ms] bg-retro-border w-1.5';
+        }
+      });
+
+      // Update thumbs
+      photos.forEach((_, i) => {
+        const t = $(`thumb-${i}`);
+        t.classList.toggle('border-retro-gold',  i === idx);
+        t.classList.toggle('border-retro-border', i !== idx);
+      });
+
+      // Scroll thumb into view
+      const activeThumb = $(`thumb-${idx}`);
+      activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+      current = idx;
+    }
+
+    function goTo(idx, dir = 'next') {
+      if (idx === current) return;
+      direction = dir;
+      resetProgress();
+      showSlide(idx, dir);
+    }
+
+    function next() { goTo((current + 1) % photos.length, 'next'); }
+    function prev() { goTo((current - 1 + photos.length) % photos.length, 'prev'); }
+
+    /* ── Progress bar ── */
+    function resetProgress() {
+      clearInterval(progTimer);
+      progValue = 0;
+      $('progressBar').style.transition = 'none';
+      $('progressBar').style.width = '0%';
+    }
+    function startProgress() {
+      resetProgress();
+      const step = 100 / (DURATION / 50);
+      progTimer = setInterval(() => {
+        progValue += step;
+        $('progressBar').style.transition = 'width 50ms linear';
+        $('progressBar').style.width = Math.min(progValue, 100) + '%';
+        if (progValue >= 100) clearInterval(progTimer);
+      }, 50);
+    }
+
+    /* ── Autoplay ── */
+    function startAutoplay() {
+      autoplay = true;
+      $('autoplayLabel').textContent = 'Pause';
+      $('autoplayIcon').innerHTML = `<svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor"><rect x="1" y="1" width="4" height="10"/><rect x="7" y="1" width="4" height="10"/></svg>`;
+      $('autoplayBtn').classList.add('bg-retro-gold', 'text-retro-black', 'border-retro-gold');
+      $('autoplayBtn').classList.remove('text-retro-gold', 'border-retro-gold');
+      startProgress();
+      autoTimer = setInterval(() => { next(); startProgress(); }, DURATION);
+    }
+    function stopAutoplay() {
+      autoplay = false;
+      clearInterval(autoTimer);
+      resetProgress();
+      $('autoplayLabel').textContent = 'Auto';
+      $('autoplayIcon').innerHTML = `<svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor"><polygon points="2,1 11,6 2,11"/></svg>`;
+      $('autoplayBtn').classList.remove('bg-retro-gold', 'text-retro-black');
+      $('autoplayBtn').classList.add('text-retro-gold', 'border-retro-gold');
+    }
+
+    $('autoplayBtn').addEventListener('click', () => autoplay ? stopAutoplay() : startAutoplay());
+    $('prevSlide').addEventListener('click',  () => { stopAutoplay(); prev(); });
+    $('nextSlide').addEventListener('click',  () => { stopAutoplay(); next(); });
+    $('heroPrev').addEventListener('click',   () => { stopAutoplay(); prev(); });
+    $('heroNext').addEventListener('click',   () => { stopAutoplay(); next(); });
+
+    /* ── Keyboard ── */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  { if (lbOpen) lbPrevFn(); else { stopAutoplay(); prev(); } }
+      if (e.key === 'ArrowRight') { if (lbOpen) lbNextFn(); else { stopAutoplay(); next(); } }
+      if (e.key === 'Escape')     closeLightboxBtn();
+    });
+
+    /* ── Touch / swipe ── */
+    let touchStartX = 0;
+    $('heroSlider').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    $('heroSlider').addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) { stopAutoplay(); dx < 0 ? next() : prev(); }
+    });
+
+    /* ── Lightbox ── */
+    let lbOpen = false;
+    let lbIdx  = 0;
+
+    function openLightbox(idx) {
+      lbIdx = idx;
+      lbOpen = true;
+      updateLightbox();
+      const lb = $('lightbox');
+      lb.classList.remove('opacity-0', 'pointer-events-none');
+      lb.classList.add('opacity-100');
+      document.body.style.overflow = 'hidden';
+    }
+    function updateLightbox() {
+      const p = photos[lbIdx];
+      const img = $('lbImg');
+      img.style.animation = 'none';
+      void img.offsetWidth;
+      img.style.animation = '';
+      img.src = p.src;
+      img.alt = p.caption;
+      $('lbCaption').textContent = p.caption;
+      $('lbCounter').textContent = `${pc(lbIdx)} / ${pc(photos.length - 1)}`;
+    }
+    function closeLightboxBtn() {
+      lbOpen = false;
+      const lb = $('lightbox');
+      lb.classList.add('opacity-0', 'pointer-events-none');
+      lb.classList.remove('opacity-100');
+      document.body.style.overflow = '';
+    }
+    function closeLightbox(e) {
+      if (e.target === $('lightbox')) closeLightboxBtn();
+    }
+    function lbNextFn() { lbIdx = (lbIdx + 1) % photos.length; updateLightbox(); }
+    function lbPrevFn() { lbIdx = (lbIdx - 1 + photos.length) % photos.length; updateLightbox(); }
+
+    $('lbNext').addEventListener('click', lbNextFn);
+    $('lbPrev').addEventListener('click', lbPrevFn);
+
+    /* ── Init: show first slide ── */
+    const firstSlide = $('slide-0');
+    firstSlide.style.opacity   = '1';
+    firstSlide.style.transform = 'translateX(0)';
+    firstSlide.style.zIndex    = '2';
+    const firstImg = $('slide-img-0');
+    firstImg.style.animation = 'kenBurns 8s ease-in-out infinite alternate';
+
+    // Auto-start autoplay after short delay
+    setTimeout(startAutoplay, 800);
+  </script>
+  
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+    const overlayBg = document.getElementById('overlay-bg');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openMenu() {
+      sidebar.classList.remove('-translate-x-full');
+      overlayBg.classList.remove('hidden');
+      document.body.style.overflow = "hidden";
+    }
+    function closeMenu() {
+      sidebar.classList.add('-translate-x-full');
+      overlayBg.classList.add('hidden');
+      document.body.style.overflow = "auto";
+    }
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlayBg.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+  </script>
+  <footer class="bg-[#0a0a0a] border-t border-white/10">
+    <div class="max-w-[1200px] mx-auto px-10 py-14 flex flex-col md:flex-row justify-between items-center gap-10">
+      <div class="flex flex-col gap-7 items-start">
+        <img src="images/Home/DJCE1.png" class="h-10 w-auto object-contain" alt="Logo"/>
+        <div class="flex gap-4">
+          <a href="https://www.tiktok.com/@djclassix_" target="_blank" class="w-10 h-10 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#333] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16" height="16" fill="white"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72c0 84.76-68.71 153.47-153.47 153.47S18.29 434.14 18.29 349.38s68.71-153.47 153.47-153.47V256c-51.62 0-93.47 41.85-93.47 93.38s41.85 93.47 93.47 93.47 93.47-41.85 93.47-93.47V0h60c1.84 83.33 69.15 150.27 152.77 152.11v57.8z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/djclassix_" target="_blank" class="w-10 h-10 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#333] transition-colors">
+            <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@djclassix_" target="_blank" class="group w-10 h-10 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#333] transition-colors">
+            <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a1a1a" class="group-hover:fill-[#333] transition-colors"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-8">
+        <div class="flex items-center gap-4">
+          <div class="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center">
+            <svg width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <p class="font-bold text-[0.85rem] text-white uppercase tracking-wider">Email</p>
+            <p class="text-[0.9rem] text-[#666]">officialdjclassix@gmail.com</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center">
+            <svg width="18" height="18" fill="none" stroke="#ccc" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div>
+            <p class="font-bold text-[0.85rem] text-white uppercase tracking-wider">Mobile</p>
+            <p class="text-[0.9rem] text-[#666]">+234 802 598 1080</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/5 py-6 text-center">
+      <p class="text-[0.75rem] text-[#444] tracking-widest uppercase font-medium">Copyright &copy; 2026 – DJ Classix</p>
+    </div>
+  </footer>
 </body>
 </html>
