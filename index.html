@@ -157,256 +157,7 @@
        style="background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');background-size:128px">
   </div>
 
-  <!-- MIXES SECTION -->
-<!-- MIXES SECTION -->
-<section id="music" class="relative z-10 bg-black py-24 border-t border-white/5">
-    <div class="max-w-[1200px] mx-auto px-6">
-
-        <!-- Header: Minimalist & Punchy (Vibe: Screenshot 161) -->
-<div class="flex items-end justify-between flex-wrap gap-6 mb-12">
-    <div>
-        <div class="flex items-center gap-4 mb-4">
-            <span class="text-[11px] font-black uppercase tracking-[0.25em] bg-white text-black px-3 py-1">Sonic Archive</span>
-            <div class="h-px bg-white/20 w-12"></div>
-            <span class="text-[11px] font-bold tracking-[0.15em] text-white/40 uppercase">14 Selected Sets</span>
-        </div>
-        
-        <h2 class="text-[clamp(40px,7vw,72px)] font-black leading-[1.1] tracking-tighter text-white uppercase italic">
-            LATEST<br>
-            <span class="relative inline-block leading-none bg-[linear-gradient(90deg,#c9a84c_0%,#e8c96a_40%,#c9a84c_60%,#a07830_100%)] bg-clip-text text-transparent animate-shimmer"
-                  style="background-size:200% auto; padding: 0.1em 0.2em; margin: -0.1em -0.2em;">
-                MIXES
-            </span>
-        </h2>
-    </div>
-</div>
-        <!-- FEATURED CARD: Enhanced 3D Depth (Vibe: Screenshot 160) -->
-        <a id="featuredLink"
-           href="https://youtu.be/QHJFunA9Shg"
-           target="_blank"
-           rel="noopener"
-           class="block relative group cursor-pointer mb-16">
-            
-            <!-- Retro Shadow/Frame (The "Other Way Round" Animation logic applied here too) -->
-            <div class="absolute inset-0 border border-white/20 translate-x-3 translate-y-3 transition-all duration-500 group-hover:translate-x-0 group-hover:translate-y-0"></div>
-            
-            <div class="relative bg-zinc-900 border border-white/10 overflow-hidden">
-                <!-- Thumbnail -->
-                <div class="relative w-full overflow-hidden pb-[50%] h-0">
-                    <img id="featuredImg"
-                         src="https://img.youtube.com/vi/QHJFunA9Shg/maxresdefault.jpg"
-                         alt="Featured Mix"
-                         class="absolute inset-0 w-full h-full object-cover grayscale opacity-70 transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-90"/>
-
-                    <!-- Play button: High Contrast -->
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-24 h-24 rounded-full border border-white/50 flex items-center justify-center backdrop-blur-sm transition-all duration-300 group-hover:bg-white group-hover:scale-110">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" class="text-white group-hover:text-black ml-1">
-                                <polygon points="6,3 21,12 6,21"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <!-- Badge -->
-                    <div class="absolute top-6 left-6">
-                        <span class="text-[10px] font-black tracking-widest uppercase bg-white text-black px-4 py-1.5 shadow-2xl">
-                            Featured Selection
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Info bar -->
-                <div class="px-8 py-6 bg-zinc-900 flex items-center justify-between flex-wrap gap-4">
-                    <div>
-                        <p class="text-[10px] font-bold tracking-[0.3em] text-white/30 uppercase mb-1">On Rotation</p>
-                        <p id="featuredTitle" class="text-2xl font-black text-white tracking-tight uppercase italic">
-                            DJ Classix Mix Vol. 01
-                        </p>
-                    </div>
-                    <span class="text-[11px] font-bold tracking-widest uppercase border border-white/20 px-6 py-3 transition-all group-hover:bg-white group-hover:text-black">
-                        Launch Player ↗
-                    </span>
-                </div>
-            </div>
-        </a>
-        
-        <!-- Navigation/Divider -->
-        <div class="flex items-center gap-6 mb-10">
-            <span class="text-[11px] font-black tracking-[0.3em] uppercase text-white/20 whitespace-nowrap">The Vault</span>
-            <div class="flex-1 h-px bg-white/10"></div>
-            <div class="flex items-center gap-2">
-                <button id="prevBtn" class="w-12 h-12 flex items-center justify-center border border-white/10 text-white transition-all hover:bg-white hover:text-black">
-                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.5 3L5.5 8l5 5"/></svg>
-                </button>
-                <button id="nextBtn" class="w-12 h-12 flex items-center justify-center border border-white/10 text-white transition-all hover:bg-white hover:text-black">
-                    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5.5 3l5 5-5 5"/></svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- Cards grid -->
-        <div id="mixesGrid" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12"></div>
-         
-        <!-- Pagination dots -->
-        <div id="dotsRow" class="flex items-center justify-center gap-3 mb-16"></div>
-
-        <!-- CTA -->
-        <div class="text-center">
-            <a href="https://www.youtube.com/@DJClassix" target="_blank" class="inline-block group relative">
-                <div class="absolute inset-0 border border-white translate-x-0 translate-y-0 transition-all group-hover:-translate-x-2 group-hover:-translate-y-2"></div>
-                <span class="relative block bg-white text-black text-[11px] font-black tracking-[0.2em] uppercase px-10 py-4 border border-white transition-colors group-hover:bg-black group-hover:text-white">
-                    Explore YouTube Archive
-                </span>
-            </a>
-        </div>
-    </div>
-</section>
-
-  <script>
-    const mixes = [
-      { id: 'QHJFunA9Shg', title: 'DJ Classix Mix Vol. 01' },
-      { id: '59S2sbq0m6Q', title: 'DJ Classix Mix Vol. 02' },
-      { id: 'Nd37qxWSEmU', title: 'DJ Classix Mix Vol. 03' },
-      { id: 'Q3HczKt83bI', title: 'DJ Classix Mix Vol. 04' },
-      { id: 'akM8ok8-EFA', title: 'DJ Classix Mix Vol. 05' },
-      { id: 'Ku-HRrFIsDE', title: 'DJ Classix Mix Vol. 06' },
-      { id: 'XmiV-ZBfh7g', title: 'DJ Classix Mix Vol. 07' },
-      { id: 'uLLI9wRT8KY', title: 'DJ Classix Mix Vol. 08' },
-      { id: 'YUkyh609ieA', title: 'DJ Classix Mix Vol. 09' },
-      { id: 'HBD_hsertTw', title: 'DJ Classix Mix Vol. 10' },
-      { id: '4idYin3HMpo', title: 'DJ Classix Mix Vol. 11' },
-      { id: 'Y4dx9JXcu80', title: 'DJ Classix Mix Vol. 12' },
-      { id: '6fpQ9jT9R4Y', title: 'DJ Classix Mix Vol. 13' },
-      { id: 'gS2SVFTQGq0', title: 'DJ Classix Mix Vol. 14' },
-    ];
-
-    const PER_PAGE   = 8;
-    let currentPage  = 0;
-    let activeMixIdx = 0;
-    const totalPages = Math.ceil(mixes.length / PER_PAGE);
-
-    const grid          = document.getElementById('mixesGrid');
-    const dotsRow       = document.getElementById('dotsRow');
-    const featuredLink  = document.getElementById('featuredLink');
-    const featuredImg   = document.getElementById('featuredImg');
-    const featuredTitle = document.getElementById('featuredTitle');
-
-    const thumb    = id => `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
-    const thumbHQ  = id => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
-    const watchUrl = id => `https://youtu.be/${id}`;
-
-    /* Update featured panel without any iframe */
-    function selectMix(idx) {
-      activeMixIdx = idx;
-      const mix = mixes[idx];
-
-      featuredLink.href       = watchUrl(mix.id);
-      featuredImg.src         = thumbHQ(mix.id);
-      featuredImg.onerror     = () => { featuredImg.src = thumb(mix.id); };
-      featuredTitle.textContent = mix.title;
-
-      /* Update active border on grid cards */
-      document.querySelectorAll('.mix-card').forEach((c, i) => {
-        const gIdx = currentPage * PER_PAGE + i;
-        c.classList.toggle('border-retro-gold',  gIdx === idx);
-        c.classList.toggle('border-retro-border', gIdx !== idx);
-      });
-
-      document.getElementById('featuredLink').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    function renderGrid() {
-      grid.innerHTML = '';
-      const start = currentPage * PER_PAGE;
-      const slice = mixes.slice(start, Math.min(start + PER_PAGE, mixes.length));
-
-      slice.forEach((mix, i) => {
-        const globalIdx = start + i;
-        const isActive  = globalIdx === activeMixIdx;
-
-        /* Each card is an <a> that opens YouTube directly */
-        const card = document.createElement('a');
-        card.href   = watchUrl(mix.id);
-        card.target = '_blank';
-        card.rel    = 'noopener';
-        card.className = [
-          'mix-card',
-          'block', 'no-underline',
-          'bg-retro-card', 'overflow-hidden', 'cursor-pointer', 'border',
-          isActive ? 'border-retro-gold' : 'border-retro-border',
-          'transition-all', 'duration-[250ms]', 'ease-out',
-          'hover:-translate-y-1', 'hover:border-retro-gold',
-          'hover:shadow-[0_12px_32px_rgba(201,168,76,0.12)]',
-          'group', 'animate-fade-up', 'opacity-0',
-        ].join(' ');
-        card.style.animationDelay = `${i * 0.04}s`;
-
-        /* Clicking the card also updates the featured panel */
-        card.addEventListener('click', (e) => {
-          /* Update featured panel (the href already handles YouTube redirect) */
-          selectMix(globalIdx);
-        });
-
-        card.innerHTML = `
-          <div class="relative overflow-hidden aspect-video">
-            <img
-              src="${thumb(mix.id)}"
-              alt="${mix.title}"
-              loading="lazy"
-              class="w-full h-full object-cover transition-transform duration-[400ms] ease-out group-hover:scale-[1.06]"
-            />
-            <div class="absolute inset-0 flex items-center justify-center
-                        bg-black/40 opacity-0 transition-opacity duration-[250ms] group-hover:opacity-100">
-              <div class="w-10 h-10 rounded-full bg-retro-gold flex items-center justify-center pl-0.5">
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="#0a0a0a">
-                  <polygon points="4,2 14,8 4,14"/>
-                </svg>
-              </div>
-            </div>
-            <!-- YouTube redirect hint -->
-            <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <span class="text-[9px] font-bold tracking-[0.1em] uppercase bg-retro-gold text-retro-black px-1.5 py-0.5">↗ YT</span>
-            </div>
-          </div>
-          <div class="px-3 pt-2.5 pb-3">
-            <p class="text-[9px] font-semibold uppercase tracking-[0.16em] text-retro-muted mb-1">
-              Mix ${String(globalIdx + 1).padStart(2, '0')}
-            </p>
-            <p class="text-[13px] font-bold text-retro-cream leading-tight truncate">
-              ${mix.title}
-            </p>
-          </div>
-        `;
-
-        grid.appendChild(card);
-      });
-    }
-
-    function renderDots() {
-      dotsRow.innerHTML = '';
-      for (let p = 0; p < totalPages; p++) {
-        const isActive = p === currentPage;
-        const dot = document.createElement('div');
-        dot.className = [
-          'h-1.5', 'rounded-full', 'cursor-pointer', 'transition-all', 'duration-[250ms]',
-          isActive ? 'bg-retro-gold w-5 rounded-[3px]' : 'bg-retro-border w-1.5',
-        ].join(' ');
-        dot.addEventListener('click', () => { currentPage = p; renderGrid(); renderDots(); });
-        dotsRow.appendChild(dot);
-      }
-    }
-
-    document.getElementById('prevBtn').addEventListener('click', () => {
-      if (currentPage > 0) { currentPage--; renderGrid(); renderDots(); }
-    });
-    document.getElementById('nextBtn').addEventListener('click', () => {
-      if (currentPage < totalPages - 1) { currentPage++; renderGrid(); renderDots(); }
-    });
-
-    renderGrid();
-    renderDots();
-  </script>
-   <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+    <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
         
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0 z-0">
@@ -426,7 +177,7 @@
                 Ready to Elevate <br/>Your Next Event?
             </h2>
             <p class="text-gray-300 text-lg md:text-xl mb-8 font-light tracking-wide max-w-lg mx-auto">
-                Bring the signature Classix sound to your corporate galas, weddings, and rooftop parties.
+                Bring the signature Classix experience to your Weddings, Birthdays, Concerts, and Corporate Events.
             </p>
             
             <!-- Retro Style Button -->
@@ -436,7 +187,7 @@
                 
                 <!-- Main Button Body -->
                 <button class="relative bg-white text-black px-14 py-4 font-bold text-xs uppercase tracking-[0.2em] border border-white transition-all duration-300 group-hover:bg-black group-hover:text-white">
-                    Book Us
+                    Book Now
                 </button>
             </a>
         </div>
@@ -466,7 +217,7 @@
           </div>
           <div>
             <p class="font-bold text-[0.85rem] text-white uppercase tracking-wider">Email</p>
-            <p class="text-[0.9rem] text-[#666]">officialdjclassix@gmail.com</p>
+            <p class="text-[0.9rem] text-[#666]">info@djclassixentertainment.com</p>
           </div>
         </div>
         <div class="flex items-center gap-4">
