@@ -253,7 +253,7 @@
                   <span class="text-sm font-light text-body">Other</span>
                 </label>
               </div>
-              <div class="other-reveal mt-2 hidden" id="contact-other">
+              <div class="other-reveal mt-2" id="contact-other">
                 <input type="text" id="contact_mode_other" placeholder="Please specify…"
                   class="w-full bg-input border border-border rounded-lg px-[18px] py-3 text-[13px] font-light text-light placeholder-[#333] outline-none focus:border-[#555] transition-colors duration-200" />
               </div>
@@ -292,7 +292,7 @@
                     <span class="text-sm font-light text-body">Other</span>
                   </label>
                 </div>
-                <div class="other-reveal mt-2 hidden" id="event-other">
+                <div class="other-reveal mt-2" id="event-other">
                   <input type="text" id="event_type_other" placeholder="Please specify…"
                     class="w-full bg-input border border-border rounded-lg px-[18px] py-3 text-[13px] font-light text-light placeholder-[#333] outline-none focus:border-[#555] transition-colors duration-200" />
                 </div>
@@ -313,6 +313,7 @@
                     DJ Set Start Time <span class="text-red-600">*</span>
                   </label>
                   <input type="time" id="set_start" required
+                    
                     class="w-full bg-input border border-border rounded-lg px-[18px] py-3.5 text-sm font-light text-light outline-none focus:border-[#555] transition-colors duration-200" />
                 </div>
                 <div>
@@ -320,6 +321,7 @@
                     DJ Set Finish Time <span class="text-red-600">*</span>
                   </label>
                   <input type="time" id="set_finish" required
+                    
                     class="w-full bg-input border border-border rounded-lg px-[18px] py-3.5 text-sm font-light text-light outline-none focus:border-[#555] transition-colors duration-200" />
                 </div>
               </div>
@@ -358,7 +360,7 @@
                     <span class="text-sm font-light text-body">Other</span>
                   </label>
                 </div>
-                <div class="other-reveal mt-2 hidden" id="guests-other">
+                <div class="other-reveal mt-2" id="guests-other">
                   <input type="text" id="guests_other" placeholder="Please specify…"
                     class="w-full bg-input border border-border rounded-lg px-[18px] py-3 text-[13px] font-light text-light placeholder-[#333] outline-none focus:border-[#555] transition-colors duration-200" />
                 </div>
@@ -438,7 +440,7 @@
                     <span class="text-sm font-light text-body">Other</span>
                   </label>
                 </div>
-                <div class="other-reveal mt-2 hidden" id="music-other">
+                <div class="other-reveal mt-2" id="music-other">
                   <input type="text" id="music_other" placeholder="Please specify…"
                     class="w-full bg-input border border-border rounded-lg px-[18px] py-3 text-[13px] font-light text-light placeholder-[#333] outline-none focus:border-[#555] transition-colors duration-200" />
                 </div>
@@ -456,65 +458,60 @@
     </div>
 
 </div>
-
-<script>
-    // ─── API KEYS & URLS ─────────────────────────────────────────────────────
-    const EMAILJS_PUBLIC_KEY  = 'ee3cayHMcdQtwggm2';
-    const EMAILJS_SERVICE_ID  = 'service_bhndpbi';
-    const EMAILJS_TEMPLATE_ID = 'template_x4eqq4s';
-    
-    // REPLACE THIS with your deployed Google Apps Script Web App URL
-    const GOOGLE_SHEETS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxgL3vgdXKwAU_J2eEKLjP4Qa9fSTu0Db_tF45Sn5DT30WlxtdQdQ5JhAfhTSw5SaG_/exec';
+  <script>
+    // ─── REPLACE THESE THREE VALUES ───────────────────────────────────────────
+    const EMAILJS_PUBLIC_KEY  = 'ee3cayHMcdQtwggm2';   // Account → API Keys
+    const EMAILJS_SERVICE_ID  = 'service_bhndpbi';   // Email Services tab
+    const EMAILJS_TEMPLATE_ID = 'template_x4eqq4s';  // Email Templates tab
     // ─────────────────────────────────────────────────────────────────────────
-
+ 
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-
+ 
     function getRadioValue(name) {
       const checked = document.querySelector('input[name="' + name + '"]:checked');
       return checked ? checked.value : 'Not specified';
     }
-
+ 
     function showOther(id) {
       const el = document.getElementById(id);
       if (!el) return;
-      el.classList.remove('hidden'); // Changed to utility class for tailwind support
+      el.classList.add('visible');
       const radioName = id.replace('-other', '');
       document.querySelectorAll('input[name="' + radioName + '"]').forEach(function(r) {
         if (r.value !== 'other') {
-          r.addEventListener('change', function() { el.classList.add('hidden'); });
+          r.addEventListener('change', function() { el.classList.remove('visible'); });
         }
       });
     }
-
+ 
     document.getElementById('booking-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-
+ 
       const btn = document.getElementById('submit-btn');
       const errorBanner = document.getElementById('error-msg');
       errorBanner.classList.add('hidden');
-
+ 
       // Resolve "other" free-text fields
       const contactRaw = getRadioValue('contact_mode');
       const contactMode = contactRaw === 'other'
         ? (document.getElementById('contact_mode_other').value.trim() || 'Other')
         : contactRaw;
-
+ 
       const eventRaw = getRadioValue('event_type');
       const eventType = eventRaw === 'other'
         ? (document.getElementById('event_type_other').value.trim() || 'Other')
         : eventRaw;
-
+ 
       const guestsRaw = getRadioValue('guests');
       const guests = guestsRaw === 'other'
         ? (document.getElementById('guests_other').value.trim() || 'Other')
         : guestsRaw;
-
+ 
       const musicRaw = getRadioValue('music');
       const music = musicRaw === 'other'
         ? (document.getElementById('music_other').value.trim() || 'Other')
         : musicRaw;
-
-      // 1. Data Object for EmailJS
+ 
       const templateParams = {
         to_email:     'bookings@djclassixentertainment.com',
         full_name:    document.getElementById('full_name').value,
@@ -531,46 +528,24 @@
         power:        getRadioValue('power'),
         music:        music,
       };
-
-      // 2. Form Data for Google Sheets
-      const sheetData = new FormData();
-      sheetData.append('Full Name', templateParams.full_name);
-      sheetData.append('Email', templateParams.email);
-      sheetData.append('Phone Number', templateParams.phone);
-      sheetData.append('Contact Mode', templateParams.contact_mode);
-      sheetData.append('Event Type', templateParams.event_type);
-      sheetData.append('Event Date', templateParams.event_date);
-      sheetData.append('Set Start Time', templateParams.set_start);
-      sheetData.append('Set Finish Time', templateParams.set_finish);
-      sheetData.append('Number of Guests', templateParams.guests);
-      sheetData.append('Location', templateParams.location);
-      sheetData.append('Sound System', templateParams.sound);
-      sheetData.append('Power', templateParams.power);
-      sheetData.append('Music', templateParams.music);
-
+ 
       // Loading state
       btn.disabled = true;
       btn.textContent = 'Sending…';
-
+ 
       try {
-        // Run both EmailJS and Google Sheets fetch simultaneously
-        await Promise.all([
-          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams),
-          fetch(GOOGLE_SHEETS_SCRIPT_URL, { method: 'POST', body: sheetData })
-        ]);
-        
-        // Success UI
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
         document.getElementById('booking-form').classList.add('hidden');
         document.getElementById('success-msg').classList.remove('hidden');
       } catch (err) {
-        console.error('Submission error:', err);
+        console.error('EmailJS error:', err);
         btn.disabled = false;
         btn.textContent = 'Book Event';
         errorBanner.classList.remove('hidden');
         errorBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
-</script>
+  </script>
   <footer class="bg-[#0a0a0a] border-t border-white/10">
     <div class="max-w-[1200px] mx-auto px-10 py-14 flex flex-col md:flex-row justify-between items-center gap-10">
       <div class="flex flex-col gap-7 items-start">
